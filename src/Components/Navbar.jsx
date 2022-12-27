@@ -4,14 +4,14 @@ import { FaSearch, FaBars } from "react-icons/fa";
 
 export default function Navbar() {
     return (
-        <Flex p="4" px="6" justify="space-between" alignItems="center">
-            <Button>
-                <FaBars />
+        <Flex shadow="md" p="3" px="6" justify="space-between" alignItems="center">
+            <Button bg="transparent" size={{ base: "md", lg: "lg" }} px="0">
+                <FaBars size="18px" />
             </Button>
-            <Heading fontFamily={"Rajdhani"} fontWeight="700">
+            <Heading fontSize={{ base: "20px", lg: "25px" }} fontWeight="700">
                 Some Guy On Internet
             </Heading>
-            <Button colorScheme="red">
+            <Button size="md" p="0" colorScheme="red">
                 <FaSearch />
             </Button>
         </Flex>

@@ -7,6 +7,6 @@ export const myTheme = extendTheme({
     },
     fonts: {
         heading: "Hanalei Fill, sans-serif",
-        body: "Raleway, sans-serif"
+        body: "Rajdhani, Roboto, sans-serif"
     }
 });

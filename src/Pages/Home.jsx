@@ -1,6 +1,11 @@
 import React from "react";
-import { Heading } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
+import Blog from "../Components/Blog";
 
 export default function Home() {
-    return <Heading>Home</Heading>;
+    return (
+        <Container py="6">
+            <Blog />
+        </Container>
+    );
 }

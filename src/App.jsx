@@ -1,9 +1,17 @@
-function App() {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Layout
+import MainLayout from "./Layouts/MainLayout";
+// Pages
+import Home from "./Pages/Home";
+
+export default function App() {
     return (
-        <div>
-            <h1>Hellow</h1>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<MainLayout />}>
+                    <Route index element={<Home />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
-
-export default App;

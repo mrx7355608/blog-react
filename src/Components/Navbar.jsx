@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, Box, Flex, Heading } from "@chakra-ui/react";
 import { FaSearch, FaFacebook, FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
-import Sidebar from "./SideBar";
+import MobileSideMenu from "./MobileSideMenu";
 import MobileSearchBar from "./MobileSearchBar";
 
 export default function Navbar() {
@@ -13,7 +13,7 @@ export default function Navbar() {
             justify={{ base: "space-between", lg: "space-around" }}
             alignItems="center">
             {/* <SocialLinks /> */}
-            <Sidebar />
+            <MobileSideMenu />
             <Heading fontSize={{ base: "18px", lg: "25px" }} fontWeight="700">
                 Some Guy On Internet
             </Heading>

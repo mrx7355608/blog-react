@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { FaBars, FaFacebook, FaInstagram, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
 
-export default function Sidebar() {
+export default function MobileSideMenu() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
 

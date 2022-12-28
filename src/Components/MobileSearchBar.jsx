@@ -15,8 +15,8 @@ export default function MobileSearchBar() {
     return (
         <>
             <Button
-                display={{ md: "none" }}
-                size={{ base: "sm", md: "md" }}
+                display={{ lg: "none" }}
+                size={{ base: "sm" }}
                 m="0"
                 colorScheme="red"
                 onClick={onOpen}>

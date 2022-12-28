@@ -6,6 +6,10 @@ export default function Home() {
     return (
         <Container py="6">
             <Blog />
+            <Blog />
+            <Blog />
+            <Blog />
+            <Blog />
         </Container>
     );
 }

@@ -7,12 +7,12 @@ import {
     DrawerContent,
     DrawerCloseButton,
     useDisclosure,
-    Text,
     Flex,
     Button,
     Heading
 } from "@chakra-ui/react";
 import { FaBars, FaFacebook, FaInstagram, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
+import MobileSideMenuLinks from "./MobileSideMenuLinks";
 
 export default function MobileSideMenu() {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -22,8 +22,8 @@ export default function MobileSideMenu() {
         <>
             <Button
                 bg="transparent"
-                display={{ md: "none" }}
-                size={{ base: "sm", md: "md" }}
+                size={{ base: "sm" }}
+                display={{ lg: "none" }}
                 m="0"
                 ref={btnRef}
                 onClick={onOpen}>
@@ -44,27 +44,11 @@ export default function MobileSideMenu() {
                             <Heading color="red.600" mt="9">
                                 Menu
                             </Heading>
-                            <Text
-                                _hover={{
-                                    color: "red.600"
-                                }}
-                                mt="6"
-                                fontWeight="700"
-                                fontSize="2xl">
-                                Home
-                            </Text>
-                            <Text
-                                _hover={{
-                                    color: "red.600"
-                                }}
-                                fontWeight="700"
-                                fontSize="2xl">
-                                Technologies
-                            </Text>
+                            <MobileSideMenuLinks />
                         </Flex>
                     </DrawerBody>
 
-                    <DrawerFooter mr="auto">
+                    <DrawerFooter>
                         <ContactLinks />
                     </DrawerFooter>
                 </DrawerContent>
@@ -75,82 +59,32 @@ export default function MobileSideMenu() {
 
 function ContactLinks() {
     return (
-        <Flex alignItems="start" gap="4" direction="column">
-            <Flex
-                _hover={{
-                    color: "red.600"
+        <Flex mx="auto" alignItems="center" gap="4">
+            <FaFacebook
+                style={{
+                    display: "inline"
                 }}
-                gap="2"
-                alignItems="Center">
-                <FaFacebook
-                    style={{
-                        display: "inline"
-                    }}
-                />
-                <Text fontWeight="700" as="span">
-                    Facebook
-                </Text>
-            </Flex>
-            <Flex
-                _hover={{
-                    color: "red.600"
+            />
+            <FaInstagram
+                style={{
+                    display: "inline"
                 }}
-                gap="2"
-                alignItems="Center">
-                <FaInstagram
-                    style={{
-                        display: "inline"
-                    }}
-                />
-                <Text fontWeight="800" as="span">
-                    Instagram
-                </Text>
-            </Flex>
-            <Flex
-                _hover={{
-                    color: "red.600"
+            />
+            <FaTwitter
+                style={{
+                    display: "inline"
                 }}
-                gap="2"
-                alignItems="Center">
-                <FaTwitter
-                    style={{
-                        display: "inline"
-                    }}
-                />
-                <Text fontWeight="700" as="span">
-                    Twitter
-                </Text>
-            </Flex>
-            <Flex
-                _hover={{
-                    color: "red.600"
+            />
+            <FaGithub
+                style={{
+                    display: "inline"
                 }}
-                gap="2"
-                alignItems="Center">
-                <FaGithub
-                    style={{
-                        display: "inline"
-                    }}
-                />
-                <Text fontWeight="700" as="span">
-                    Github
-                </Text>
-            </Flex>
-            <Flex
-                _hover={{
-                    color: "red.600"
+            />
+            <FaEnvelope
+                style={{
+                    display: "inline"
                 }}
-                gap="2"
-                alignItems="Center">
-                <FaEnvelope
-                    style={{
-                        display: "inline"
-                    }}
-                />
-                <Text fontWeight="700" as="span">
-                    mrx7355608@gmail.com
-                </Text>
-            </Flex>
+            />
         </Flex>
     );
 }

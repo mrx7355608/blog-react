@@ -3,16 +3,26 @@ import React from "react";
 
 export default function Blog() {
     return (
-        <Flex border="1px" borderColor="gray.200" rounded="lg" shadow="md" direction="column" p="5">
-            <Text fontWeight={600}>11/02/2022</Text>
+        <Flex
+            bg="white"
+            mt="6"
+            border="1px"
+            borderColor="gray.200"
+            rounded="lg"
+            shadow="md"
+            direction="column"
+            p="5">
+            <Text color="gray.500" fontWeight={600}>
+                11/02/2022
+            </Text>
             <Heading lineHeight={1} fontSize="2xl" fontFamily="Rajdhani" mt="2" fontWeight="700">
                 Mini Redux with Context API and useReducer
             </Heading>
-            <Flex mt="2" gap="2">
+            <Flex wrap="wrap" mt="2" gap="1">
                 <Tag
                     fontFamily="Rajdhani"
-                    px="4"
-                    size="md"
+                    px="3"
+                    fontSize="xs"
                     borderRadius="full"
                     variant={"outline"}
                     colorScheme="red">
@@ -20,8 +30,8 @@ export default function Blog() {
                 </Tag>
                 <Tag
                     fontFamily="Rajdhani"
-                    px="4"
-                    size="md"
+                    px="3"
+                    fontSize="xs"
                     borderRadius="full"
                     variant={"outline"}
                     colorScheme="red">
@@ -29,24 +39,17 @@ export default function Blog() {
                 </Tag>
             </Flex>
             <Text
-                letterSpacing={0.4}
+                letterSpacing={0.5}
+                fontSize="16px"
                 lineHeight={1.6}
                 color="gray.600"
-                fontFamily={"Roboto"}
-                // fontSize="md"
                 fontWeight={500}
-                mt="5">
+                mt="3.5">
                 Redux no doubt is a great tool for state management, but every tool cannot be used
                 everywhere, it might be an overkill if we used redux in a medium level project. But
                 we can't use state ....
             </Text>
-            <Button
-                size="sm"
-                w="80px"
-                mt="8"
-                fontWeight={600}
-                colorScheme="red"
-                borderRadius="full">
+            <Button size="sm" mt="9" fontWeight={700} colorScheme="red" borderRadius="md">
                 Read
             </Button>
         </Flex>

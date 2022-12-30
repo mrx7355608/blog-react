@@ -6,7 +6,7 @@ export const myTheme = extendTheme({
         useSystemColorMode: false
     },
     fonts: {
-        heading: "Hanalei Fill, sans-serif",
+        heading: "Cookie, sans-serif",
         body: "Rajdhani,sans-serif"
     }
 });

@@ -14,11 +14,11 @@ export default function App() {
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<Home />} />
                 </Route>
-				<Route path="admin" element={<AdminLayout />} >
-					<Route index element={<h1>Admin</h1>} />
-					<Route path="users" element={<UsersAdminPage />} />
-					<Route path="blogs" element={<BlogsAdminPage />} />
-				</Route>
+                <Route path="admin" element={<AdminLayout />}>
+                    <Route index element={<h1>Admin</h1>} />
+                    <Route path="users" element={<UsersAdminPage />} />
+                    <Route path="blogs" element={<BlogsAdminPage />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );

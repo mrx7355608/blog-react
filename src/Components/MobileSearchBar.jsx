@@ -1,55 +1,30 @@
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalFooter,
-    ModalBody,
-    Button,
-    useDisclosure,
-    Input
-} from "@chakra-ui/react";
+import { Button, Input, Box, position } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 
 export default function MobileSearchBar() {
-    const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <>
-            <Button
-                display={{ lg: "none" }}
-                size={{ base: "sm" }}
-                m="0"
-                colorScheme="red"
-                onClick={onOpen}>
-                <FaSearch />
-            </Button>
-
-            <Modal size="sm" isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay backdropFilter="blur(3px)" />
-                <ModalContent>
-                    <ModalBody>
-                        <Input
-                            _placeholder={{
-                                color: "gray.700"
-                            }}
-                            placeholder="Magic of Context API with useReducer ... "
-                            fontSize="md"
-                            fontWeight="600"
-                            mt="3"
-                            border="0"
-                            outline="0"
-                            bg="gray.100"
-                            size="lg"
-                            mb="0"
-                        />
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <Button w="full" colorScheme="red" variant="solid">
-                            Search
-                        </Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </>
+        <Box pos="relative">
+            <Input
+                placeholder="Search"
+                fontWeight="600"
+                px="3"
+                pr="7"
+                size="sm"
+                rounded="full"
+                bg="gray.100"
+                border="0"
+                outline="0"
+            />
+            <FaSearch
+                style={{
+                    position: "absolute",
+                    top: "30%",
+                    zIndex: "2",
+                    right: "6%"
+                }}
+                color="rgb(108, 106, 106)"
+                size="11px"
+            />
+        </Box>
     );
 }

@@ -10,11 +10,11 @@ export default function Navbar() {
             <Heading>Just A Dev</Heading>
             <Divider />
             <HStack gap="3" py="2">
-                <FaFacebook size="14px" color="#2d2d2d" />
-                <FaInstagram size="14px" color="#2d2d2d" />
-                <FaTwitter size="14px" color="#2d2d2d" />
-                <FaGithub size="14px" color="#2d2d2d" />
-                <FaEnvelope size="14px" color="#2d2d2d" />
+                <FaFacebook size="14px" />
+                <FaInstagram size="14px" />
+                <FaTwitter size="14px" />
+                <FaGithub size="14px" />
+                <FaEnvelope size="14px" />
             </HStack>
             <Divider />
             <HStack w="full" justify="space-between" alignItems="center">

@@ -4,7 +4,7 @@ import Blog from "../Components/Blog";
 
 export default function Home() {
     return (
-        <Container maxW="800px" py="6">
+        <Container maxW="700px" py="6">
             <Blog />
             <Blog />
             <Blog />

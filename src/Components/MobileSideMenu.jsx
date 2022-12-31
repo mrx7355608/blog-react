@@ -12,7 +12,16 @@ import {
     Heading,
     Text
 } from "@chakra-ui/react";
-import { FaBars, FaFacebook, FaInstagram, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
+import {
+    FaBars,
+    FaFacebook,
+    FaInstagram,
+    FaTwitter,
+    FaGithub,
+    FaEnvelope,
+    FaArrowDown
+} from "react-icons/fa";
+import MobileSearchBar from "./MobileSearchBar";
 
 export default function MobileSideMenu() {
     const [selectedMenuOption, setSelected] = React.useState("");
@@ -48,22 +57,12 @@ export default function MobileSideMenu() {
                             alignItems="center"
                             direction="column"
                             gap="3">
-                            {/* <Heading fontSize="5xl" color="red.600" mt="9">
+                            <Heading fontSize="5xl" color="red.600" mt="9">
                                 Menu
-                            </Heading> */}
+                            </Heading>
+
                             <Text
-                                pos={"absolute"}
-                                top="35%"
-                                left="10%"
-                                translateY={"-35%"}
-                                translateX={"-10%"}
-                                opacity="0.2"
-                                fontSize="4xl"
-                                fontWeight={700}>
-                                {selectedMenuOption}
-                            </Text>
-                            <Text
-                                mt="9"
+                                mt="5"
                                 _hover={{
                                     cursor: "pointer",
                                     color: "red.600"
@@ -72,6 +71,16 @@ export default function MobileSideMenu() {
                                 fontSize="2xl">
                                 Home
                             </Text>
+                            <Text
+                                _hover={{
+                                    cursor: "pointer",
+                                    color: "red.600"
+                                }}
+                                fontWeight="400"
+                                fontSize="2xl">
+                                About Me
+                            </Text>
+                            <MobileSearchBar />
                         </Flex>
                     </DrawerBody>
 

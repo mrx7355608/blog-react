@@ -2,12 +2,11 @@ import React from "react";
 import { Input, Box, Flex, Heading, VStack, Divider, HStack } from "@chakra-ui/react";
 import { FaSearch, FaFacebook, FaInstagram, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
 import MobileSideMenu from "./MobileSideMenu";
-import MobileSearchBar from "./MobileSearchBar";
 
 export default function Navbar() {
     return (
         <VStack mx="auto" as="header" w="full" bg="white" p="3">
-            <Heading>Just A Dev</Heading>
+            <Heading color="red.500">Just A Dev</Heading>
             <Divider />
             <HStack gap="3" py="2">
                 <FaFacebook size="14px" />
@@ -19,7 +18,6 @@ export default function Navbar() {
             <Divider />
             <HStack w="full" justify="space-between" alignItems="center">
                 <MobileSideMenu />
-                <MobileSearchBar />
             </HStack>
         </VStack>
     );

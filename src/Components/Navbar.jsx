@@ -1,34 +1,32 @@
 import React from "react";
-import { Input, Box, Flex, Heading } from "@chakra-ui/react";
+import { Input, Box, Flex, Heading, VStack, Divider, HStack } from "@chakra-ui/react";
 import { FaSearch, FaFacebook, FaInstagram, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
 import MobileSideMenu from "./MobileSideMenu";
 import MobileSearchBar from "./MobileSearchBar";
 
 export default function Navbar() {
     return (
-        <Flex shadow="md" p="4" justify="space-between" alignItems="center">
-            <SocialLinks />
-            <MobileSideMenu />
-            <Heading fontSize={{ base: "18px", md: "20px", lg: "22px" }} fontWeight="700">
-                Some Guy On Internet
-            </Heading>
-            <MobileSearchBar />
-
-            <SearchBar />
-        </Flex>
+        <VStack mx="auto" as="header" w="full" bg="white" p="3">
+            <Heading>Just A Dev</Heading>
+            <Divider />
+            <HStack gap="3" py="2">
+                <FaFacebook size="14px" color="#2d2d2d" />
+                <FaInstagram size="14px" color="#2d2d2d" />
+                <FaTwitter size="14px" color="#2d2d2d" />
+                <FaGithub size="14px" color="#2d2d2d" />
+                <FaEnvelope size="14px" color="#2d2d2d" />
+            </HStack>
+            <Divider />
+            <HStack w="full" justify="space-between" alignItems="center">
+                <MobileSideMenu />
+                <MobileSearchBar />
+            </HStack>
+        </VStack>
     );
 }
 
 function SocialLinks() {
-    return (
-        <Flex ml="8" color="gray.700" gap="5" display={{ base: "none", lg: "flex" }}>
-            <FaFacebook />
-            <FaInstagram />
-            <FaTwitter />
-            <FaGithub />
-            <FaEnvelope />
-        </Flex>
-    );
+    return <Flex ml="8" color="gray.700" gap="5" display={{ base: "none", lg: "flex" }}></Flex>;
 }
 
 function SearchBar() {

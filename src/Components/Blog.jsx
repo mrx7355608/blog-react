@@ -15,7 +15,8 @@ export default function Blog() {
                 <Tag
                     fontFamily="Rajdhani"
                     px="3"
-                    borderRadius="full"
+					pt="0.5"
+                    borderRadius="md"
                     variant="outline"
                     color="gray.600"
                     border="gray.700">
@@ -24,7 +25,8 @@ export default function Blog() {
                 <Tag
                     fontFamily="Rajdhani"
                     px="3"
-                    borderRadius="full"
+					pt="0.5"
+                    borderRadius="md"
                     variant="outline"
                     color="gray.600"
                     border="gray.700">
@@ -33,8 +35,8 @@ export default function Blog() {
             </Flex>
             <Text
                 letterSpacing={0.5}
-                fontSize="16px"
-                lineHeight={1.6}
+                fontSize="18px"
+                lineHeight={1.4}
                 color="gray.700"
                 fontWeight={500}
                 mt="3.5">

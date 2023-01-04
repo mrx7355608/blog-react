@@ -21,23 +21,19 @@ import {
     FaEnvelope,
     FaArrowDown
 } from "react-icons/fa";
-import MobileSearchBar from "./MobileSearchBar";
 
 export default function MobileSideMenu() {
-    const [selectedMenuOption, setSelected] = React.useState("");
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
 
     return (
         <>
             <Button
-                bg="transparent"
-                size={{ base: "sm" }}
-                display={{ lg: "none" }}
-                m="0"
+				mr="9"
+                bg="gray.700"
                 ref={btnRef}
                 onClick={onOpen}>
-                <FaBars size="18px" />
+                <FaBars color="white" size="18px" />
             </Button>
             <Drawer
                 size="full"
@@ -80,7 +76,6 @@ export default function MobileSideMenu() {
                                 fontSize="2xl">
                                 About Me
                             </Text>
-                            <MobileSearchBar />
                         </Flex>
                     </DrawerBody>
 

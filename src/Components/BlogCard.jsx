@@ -11,11 +11,12 @@ export default function Blog() {
             <Heading lineHeight={1} fontSize="4xl" fontFamily="Rajdhani" mt="2" fontWeight="700">
                 Mini Redux with Context API and useReducer
             </Heading>
-            <Flex wrap="wrap" mt="2" gap="1">
+            <Flex wrap="wrap" mt="2" gap="2">
                 <Tag
                     fontFamily="Rajdhani"
+                    size={{ base: "md", lg: "lg" }}
                     px="3"
-					pt="0.5"
+                    letterSpacing={0.3}
                     borderRadius="md"
                     variant="outline"
                     color="gray.600"
@@ -24,13 +25,14 @@ export default function Blog() {
                 </Tag>
                 <Tag
                     fontFamily="Rajdhani"
+                    letterSpacing={0.3}
                     px="3"
-					pt="0.5"
                     borderRadius="md"
+                    size={{ base: "md", lg: "lg" }}
                     variant="outline"
                     color="gray.600"
                     border="gray.700">
-                    <Text fontWeight={700}>Expressjs</Text>
+                    <Text fontWeight={700}>Express</Text>
                 </Tag>
             </Flex>
             <Text

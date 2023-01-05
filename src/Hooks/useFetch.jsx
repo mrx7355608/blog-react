@@ -1,21 +1,19 @@
 import React from "react";
 
-export default function useBlogs() {
+export default function useFetch(url) {
     const [loading, setLoading] = React.useState(true);
-    const [blogs, setBlogs] = React.useState([]);
+    const [data, setData] = React.useState(null);
     const [error, setError] = React.useState(null);
 
     React.useEffect(() => {
-        fetch("http://localhost:8000/api/v1/blogs", {
-            mode: "cors"
-        })
+        fetch(url)
             .then((resp) => resp.json())
-            .then((data) => {
+            .then((r) => {
                 setLoading(false);
-                setBlogs(data);
+                setData(r);
             })
             .catch((err) => setError(err));
     }, []);
 
-    return { loading, blogs, error };
+    return { loading, data, error };
 }

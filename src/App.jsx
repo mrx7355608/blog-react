@@ -6,6 +6,7 @@ import AdminLayout from "./Layouts/AdminLayout";
 import Home from "./Pages/Home";
 import UsersAdminPage from "./Pages/UsersAdminPage";
 import BlogsAdminPage from "./Pages/BlogsAdminPage";
+import Blog from "./Pages/Blog";
 
 export default function App() {
     return (
@@ -13,6 +14,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<Home />} />
+                    <Route path="/:id" element={<Blog />} />
                 </Route>
                 <Route path="admin" element={<AdminLayout />}>
                     <Route index element={<h1>Admin</h1>} />

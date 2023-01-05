@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 
 export default function DesktopSearchbar() {
     return (
-        <Box display={{ base: "none", lg: "block" }} pos="relative">
+        <Box pos="relative">
             <Input
                 _placeholder={{
                     opacity: 1,

@@ -6,30 +6,21 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
     return (
-        <VStack
+        <HStack
             style={{
-                boxShadow: "0px 3px 5px rgba(198,198,198,0.4)"
+                boxShadow: "0px 1px 6px rgba(198,198,198,0.4)"
             }}
-            mx="auto"
             as="header"
+            justify={{ base: "space-between", lg: "space-around" }}
             w="full"
             bg="white"
-            p="3">
-            <Heading fontSize="5xl" color="red.500">
+            p="4">
+            <Heading fontSize="4xl" color="red.600">
                 Just A Dev
             </Heading>
-            <Divider />
-            <HStack gap="3" py="3">
-                <FaFacebook size="16px" />
-                <FaInstagram size="16px" />
-                <FaTwitter size="16px" />
-                <FaGithub size="16px" />
-                <FaEnvelope size="16px" />
-            </HStack>
-            <Divider />
-            <Box w="full" display={{ lg: "none" }}>
+            <Box display={{ lg: "none" }}>
                 <MobileSideMenu />
-                <Input
+                {/* <Input
                     placeholder="Search"
                     fontWeight="600"
                     px="3"
@@ -38,13 +29,11 @@ export default function Navbar() {
                     borderColor="gray.600"
                     color="gray.600"
                     w="calc(100% - 65px)"
-                />
+                /> */}
             </Box>
             <Flex
-                py="2"
+                py="1"
                 display={{ base: "none", lg: "flex" }}
-                w="full"
-                pos="relative"
                 justify="center"
                 alignItems="center"
                 gap="9">
@@ -58,6 +47,13 @@ export default function Navbar() {
                     <Link to="/">ABOUT ME</Link>
                 </Text>
             </Flex>
-        </VStack>
+            <HStack display={{ base: "none", lg: "flex" }} gap="4" py="2">
+                <FaFacebook size="16px" />
+                <FaInstagram size="16px" />
+                <FaTwitter size="16px" />
+                <FaGithub size="16px" />
+                <FaEnvelope size="16px" />
+            </HStack>
+        </HStack>
     );
 }

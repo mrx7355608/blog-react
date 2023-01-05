@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Input, Flex, Text, Heading, VStack, Divider, HStack } from "@chakra-ui/react";
+import { Button, Input, Flex, Text, Heading, VStack, Divider, HStack } from "@chakra-ui/react";
 import { FaSearch, FaFacebook, FaInstagram, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
 import MobileSideMenu from "./MobileSideMenu";
 import { Link } from "react-router-dom";

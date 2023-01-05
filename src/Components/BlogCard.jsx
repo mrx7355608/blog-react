@@ -2,38 +2,34 @@ import { Text, Heading, Flex, Tag, Divider } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Blog() {
+export default function Blog({ blog }) {
     return (
         <Flex bg="transparent" my="9" direction="column">
-            <Text color="gray.500" fontWeight={600}>
-                11/02/2022
+            <Text fontSize={{ base: "md", lg: "lg" }} color="gray.500" fontWeight={600}>
+                {new Date(blog.createdAt).toDateString()}
             </Text>
             <Heading lineHeight={1} fontSize="4xl" fontFamily="Rajdhani" mt="2" fontWeight="700">
-                Mini Redux with Context API and useReducer
+                {blog.title}
             </Heading>
             <Flex wrap="wrap" mt="2" gap="2">
-                <Tag
-                    fontFamily="Rajdhani"
-                    size={{ base: "md", lg: "lg" }}
-                    px="3"
-                    letterSpacing={0.3}
-                    borderRadius="md"
-                    variant="outline"
-                    color="gray.600"
-                    border="gray.700">
-                    <Text fontWeight={700}>Docker</Text>
-                </Tag>
-                <Tag
-                    fontFamily="Rajdhani"
-                    letterSpacing={0.3}
-                    px="3"
-                    borderRadius="md"
-                    size={{ base: "md", lg: "lg" }}
-                    variant="outline"
-                    color="gray.600"
-                    border="gray.700">
-                    <Text fontWeight={700}>Express</Text>
-                </Tag>
+                {blog.tags.map((tag) => {
+                    return (
+                        <Tag
+                            key={Math.random()}
+                            fontFamily="Rajdhani"
+                            size={{ base: "md", lg: "lg" }}
+                            px="3"
+                            letterSpacing={0.3}
+                            borderRadius="md"
+                            variant="outline"
+                            color="gray.600"
+                            border="gray.700">
+                            <Text fontWeight={700}>
+                                {tag.substring(1, 0).toUpperCase() + tag.substring(1)}
+                            </Text>
+                        </Tag>
+                    );
+                })}
             </Flex>
             <Text
                 letterSpacing={0.5}
@@ -54,7 +50,7 @@ export default function Blog() {
                 w="max-content"
                 p="0"
                 borderRadius="md">
-                <Link to="">Read more</Link>
+                <Link to={"/" + blog._id}>Read more</Link>
             </Text>
             <Divider mt="6" />
         </Flex>

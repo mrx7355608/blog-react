@@ -12,15 +12,7 @@ import {
     Heading,
     Text
 } from "@chakra-ui/react";
-import {
-    FaBars,
-    FaFacebook,
-    FaInstagram,
-    FaTwitter,
-    FaGithub,
-    FaEnvelope,
-    FaArrowDown
-} from "react-icons/fa";
+import { FaBars, FaFacebook, FaInstagram, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
 
 export default function MobileSideMenu() {
     const { isOpen, onOpen, onClose } = useDisclosure();

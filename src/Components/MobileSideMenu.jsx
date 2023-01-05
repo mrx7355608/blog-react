@@ -28,11 +28,7 @@ export default function MobileSideMenu() {
 
     return (
         <>
-            <Button
-				mr="9"
-                bg="gray.700"
-                ref={btnRef}
-                onClick={onOpen}>
+            <Button mr="3" bg="gray.700" ref={btnRef} onClick={onOpen}>
                 <FaBars color="white" size="18px" />
             </Button>
             <Drawer

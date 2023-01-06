@@ -9,7 +9,7 @@ export default function Blog({ blog }) {
                 {new Date(blog.createdAt).toDateString()}
             </Text>
             <Heading lineHeight={1} fontSize="4xl" fontFamily="Rajdhani" mt="2" fontWeight="700">
-                {blog.title}
+                <Link to={"/blog/" + blog._id}>{blog.title}</Link>
             </Heading>
             <Flex wrap="wrap" mt="2" gap="2">
                 {blog.tags.map((tag) => {
@@ -50,7 +50,7 @@ export default function Blog({ blog }) {
                 w="max-content"
                 p="0"
                 borderRadius="md">
-                <Link to={"/" + blog._id}>Read more</Link>
+                <Link to={"/blog/" + blog._id}>Read more</Link>
             </Text>
             <Divider mt="6" />
         </Flex>

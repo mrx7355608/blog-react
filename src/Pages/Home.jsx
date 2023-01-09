@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Heading, Flex, Container, Spinner } from "@chakra-ui/react";
 
-import DesktopSearchbar from "../Components/Searchbar";
+import Searchbar from "../Components/Searchbar";
 import BlogCard from "../Components/BlogCard";
 import useFetch from "../Hooks/useFetch";
 import TagsList from "../Components/TagsList";
 import appConfig from "../../config/appConfig";
 
 export default function Home() {
-    const [url, setUrl] = React.useState(`${appConfig.apiUrl}/blogs`);
+    const [url, setUrl] = useState(`${appConfig.apiUrl}/blogs?`);
     const { loading, data: blogs, error } = useFetch(url);
 
     return (
         <Container maxW="700px" py="6">
-            <DesktopSearchbar />
-            <TagsList setUrl={setUrl} />
+            <Searchbar url={url} setUrl={setUrl} />
+            <TagsList url={url} setUrl={setUrl} />
             {error ? <Heading>{error.message}</Heading> : null}
             {loading ? (
                 <Flex mt="9" w="full" justify="center">

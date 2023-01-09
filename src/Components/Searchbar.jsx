@@ -1,34 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Box, Input } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import appConfig from "../../config/appConfig";
 import useSearch from "../Hooks/useSearch";
+import { UrlQueryGenerator } from "../UrlGenerator";
 
-export default function DesktopSearchbar() {
-    const [loading, setLoading] = useState(false);
-    const [results, setResults] = useState([]);
-    const [error, setError] = useState(null);
-
+export default function Searchbar({ url, setUrl }) {
     const { searchTerm, setDebounce } = useSearch();
+
+    const validateString = (str) => {
+        // Detect if string contains any special characters
+        const res = str.trim().replace(/[^\w\s-]/gi, "");
+        return res;
+    };
 
     // Hit api
     useEffect(() => {
-        const searchVal = searchTerm.trim().replace(/[^\w\s]/gi, "");
-        if (!searchVal) return;
-        setLoading(true);
-        const url = `${appConfig.apiUrl}/blogs?title=${searchVal}`;
-        fetch(url, {
-            mode: "cors"
-        })
-            .then((resp) => resp.json())
-            .then((r) => {
-                setLoading(false);
-                console.log(r);
-            })
-            .catch((err) => {
-                setLoading(false);
-                setError(err);
-            });
+        const { create } = UrlQueryGenerator({ url, query: "title" });
+
+        // TODO: show error if string contains special characters
+        // If string is invalid then, do not hit api for a search
+        const searchVal = validateString(searchTerm);
+        if (!searchVal) {
+            if (!url.includes("title")) return;
+            const newQuery = create("");
+            console.log({ newQuery });
+            return setUrl(appConfig.apiUrl + "/blogs?" + newQuery);
+        }
+
+        // Create a new query
+        const newQuery = create(searchVal);
+
+        // Append new query string to api url
+        const newUrl = appConfig.apiUrl + "/blogs?" + newQuery;
+        setUrl(newUrl);
     }, [searchTerm]);
 
     return (

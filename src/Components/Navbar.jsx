@@ -20,13 +20,14 @@ export default function Navbar() {
     const showToast = () => {
         return toast({
             title: "Email copied to clipboard!",
-            status: "success",
+            status: "info",
             variant: "left-accent",
             isClosable: true,
-            position: "top",
+            position: "bottom",
             duration: 5000
         });
     };
+
     return (
         <HStack
             style={{

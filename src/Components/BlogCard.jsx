@@ -1,6 +1,7 @@
 import { Text, Heading, Flex, Tag, Divider } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
+import parse from "html-react-parser";
 
 export default function Blog({ blog }) {
     return (
@@ -11,7 +12,7 @@ export default function Blog({ blog }) {
             <Heading
                 color="gray.200"
                 lineHeight={1}
-                fontSize={{ base: "4xl", lg: "5xl" }}
+                fontSize="4xl"
                 fontFamily="Rajdhani"
                 mt="2"
                 fontWeight="700">
@@ -42,9 +43,7 @@ export default function Blog({ blog }) {
                 color="gray.400"
                 fontWeight={500}
                 mt="4">
-                Redux no doubt is a great tool for state management, but every tool cannot be used
-                everywhere, it might be an overkill if we used redux in a medium level project. But
-                we can not use state ....
+                {parse(blog.body.substring(0, 250))}
             </Text>
             <Text
                 fontSize={["sm", "lg"]}

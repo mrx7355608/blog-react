@@ -1,4 +1,6 @@
 import { Flex, Tag, Text, Container, Heading, Spinner } from "@chakra-ui/react";
+import parse from "html-react-parser";
+import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import React from "react";
 import { useParams } from "react-router-dom";
 import appConfig from "../../config/appConfig";
@@ -9,7 +11,7 @@ export default function Blog() {
     const { loading, data: blog, error } = useFetch(`${appConfig.apiUrl}/blogs/${id}`);
 
     return (
-        <Container py="9" maxW="600px">
+        <Container py="9" maxW="800px">
             {loading ? <Spinner /> : null}
             {error ? <Heading>{error}</Heading> : null}
             {blog && !loading ? (
@@ -44,6 +46,9 @@ export default function Blog() {
                             );
                         })}
                     </Flex>
+                    <Text my="5">
+                        <Prose>{parse(blog.body)}</Prose>
+                    </Text>
                 </>
             ) : null}
         </Container>

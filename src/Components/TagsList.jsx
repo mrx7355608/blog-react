@@ -42,12 +42,16 @@ export default function TagsList({ setUrl, url }) {
                         }}
                         key={Math.random()}
                         _hover={{
-                            color: "red.600",
+                            color: "red.200",
                             cursor: "pointer",
-                            borderColor: "red.600"
+                            bg: "rgba(254, 178, 178, 0.16)"
                         }}
                         variant="outline"
-                        color={selectedTags.includes(tag) ? "red.500" : "gray.700"}
+                        fontWeight="600"
+                        color={selectedTags.includes(tag) ? "red.200" : "gray.400"}
+                        bg={
+                            selectedTags.includes(tag) ? "rgba(254, 178, 178, 0.16)" : "transparent"
+                        }
                         size={{ base: "md", lg: "lg" }}>
                         {tag}
                     </Tag>

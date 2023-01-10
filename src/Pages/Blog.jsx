@@ -36,8 +36,7 @@ export default function Blog() {
                                     letterSpacing={0.3}
                                     borderRadius="md"
                                     variant="outline"
-                                    color="gray.600"
-                                    border="gray.700">
+                                    colorScheme={"red"}>
                                     <Text fontWeight={700}>
                                         {tag.substring(1, 0).toUpperCase() + tag.substring(1)}
                                     </Text>

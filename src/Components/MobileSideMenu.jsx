@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
     Drawer,
     DrawerBody,
@@ -30,8 +31,8 @@ export default function MobileSideMenu() {
                 onClose={onClose}
                 finalFocusRef={btnRef}>
                 <DrawerOverlay />
-                <DrawerContent color="gray.700">
-                    <DrawerCloseButton color="gray.800" />
+                <DrawerContent bg="gray.800">
+                    <DrawerCloseButton />
 
                     <DrawerBody>
                         <Flex
@@ -44,26 +45,29 @@ export default function MobileSideMenu() {
                             <Heading fontSize="5xl" color="red.600" mt="9">
                                 Menu
                             </Heading>
-
-                            <Text
-                                mt="5"
-                                _hover={{
-                                    cursor: "pointer",
-                                    color: "red.600"
-                                }}
-                                fontWeight="400"
-                                fontSize="2xl">
-                                Home
-                            </Text>
-                            <Text
-                                _hover={{
-                                    cursor: "pointer",
-                                    color: "red.600"
-                                }}
-                                fontWeight="400"
-                                fontSize="2xl">
-                                About Me
-                            </Text>
+                            <Link to="/">
+                                <Text
+                                    mt="5"
+                                    _hover={{
+                                        cursor: "pointer",
+                                        color: "red.500"
+                                    }}
+                                    fontWeight="400"
+                                    fontSize="2xl">
+                                    Home
+                                </Text>
+                            </Link>
+                            <Link to="/about">
+                                <Text
+                                    _hover={{
+                                        cursor: "pointer",
+                                        color: "red.500"
+                                    }}
+                                    fontWeight="400"
+                                    fontSize="2xl">
+                                    About Me
+                                </Text>
+                            </Link>
                         </Flex>
                     </DrawerBody>
 

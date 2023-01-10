@@ -30,13 +30,11 @@ export default function Navbar() {
 
     return (
         <HStack
-            style={{
-                boxShadow: "0px 1px 6px rgba(198,198,198,0.4)"
-            }}
             as="header"
+            shadow="lg"
             justify={{ base: "space-between", lg: "space-around" }}
             w="full"
-            bg="white"
+            bg="transparent"
             p="4">
             <Heading fontSize="4xl" color="red.600">
                 <Link to="/">Just A Dev</Link>

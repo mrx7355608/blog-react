@@ -42,16 +42,17 @@ export default function Searchbar({ url, setUrl }) {
                 onChange={(e) => setDebounce(e.target.value)}
                 _placeholder={{
                     opacity: 1,
-                    color: "gray.800"
+                    color: "whiteAlpha.600"
                 }}
                 placeholder="Search"
                 fontWeight="600"
                 px="4"
                 pr="7"
                 size="lg"
-                variant="outline"
-                borderColor="gray.600"
-                color="gray.800"
+                variant="solid"
+                borderColor="whiteAlpha.600"
+                color="whiteAlpha.800"
+                bg="gray.700"
             />
             <FaSearch
                 size="14px"
@@ -59,7 +60,8 @@ export default function Searchbar({ url, setUrl }) {
                     position: "absolute",
                     right: "3%",
                     top: "50%",
-                    transform: "translateY(-50%)"
+                    transform: "translateY(-50%)",
+                    color: "rgba(255,255,255,0.7)"
                 }}
             />
         </Box>

@@ -8,6 +8,9 @@ import UsersAdminPage from "./Pages/UsersAdminPage";
 import BlogsAdminPage from "./Pages/BlogsAdminPage";
 import Blog from "./Pages/Blog";
 import About from "./Pages/About";
+import AdminLogin from "./Pages/AdminLogin";
+import Admin from "./Pages/Admin";
+import AdminCreateBlog from "./Pages/AdminCreateBlog";
 
 export default function App() {
     return (
@@ -19,10 +22,14 @@ export default function App() {
                     <Route path="/about" element={<About />} />
                 </Route>
                 <Route path="admin" element={<AdminLayout />}>
-                    <Route index element={<h1>Admin</h1>} />
+                    <Route index element={<Admin />} />
                     <Route path="users" element={<UsersAdminPage />} />
-                    <Route path="blogs" element={<BlogsAdminPage />} />
+                    <Route path="blogs">
+                        <Route index element={<BlogsAdminPage />} />
+                        <Route path="create" element={<AdminCreateBlog />} />
+                    </Route>
                 </Route>
+                <Route path="/admin/login" element={<AdminLogin />} />
             </Routes>
         </BrowserRouter>
     );

@@ -6,27 +6,16 @@ import {
     Flex,
     Text,
     Heading,
-    HStack,
-    useToast
+    HStack
 } from "@chakra-ui/react";
 import { FaFacebook, FaInstagram, FaTwitter, FaGithub, FaEnvelope } from "react-icons/fa";
 import MobileSideMenu from "./MobileSideMenu";
 import { Link } from "react-router-dom";
+import useShowToast from "../Hooks/useShowToast";
 
 export default function Navbar() {
     const { onCopy } = useClipboard("mrx7355608@gmail.com");
-    const toast = useToast();
-
-    const showToast = () => {
-        return toast({
-            title: "Email copied to clipboard!",
-            status: "info",
-            variant: "left-accent",
-            isClosable: true,
-            position: "bottom",
-            duration: 5000
-        });
-    };
+    const showToast = useShowToast();
 
     return (
         <HStack

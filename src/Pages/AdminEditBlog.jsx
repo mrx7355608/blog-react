@@ -1,18 +1,14 @@
-import { Button, Heading, Input, Spinner, useToast } from "@chakra-ui/react";
+import { Button, Heading, Input, Spinner } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import appConfig from "../../config/appConfig";
 import { useParams } from "react-router-dom";
+import useShowToast from "../Hooks/useShowToast";
 
 export default function AdminEditBlog() {
     const { id } = useParams();
     const editorRef = useRef(null);
-    const toast = useToast({
-        variant: "left-accent",
-        isClosable: true,
-        duration: 5000,
-        position: "top-right"
-    });
+    const showToast = useShowToast();
     const [data, setData] = useState({
         title: "",
         body: "",
@@ -56,13 +52,6 @@ export default function AdminEditBlog() {
         const { name, value } = e.target;
         if (name === "title") setData({ ...data, title: value });
         if (name === "tags") setData({ ...data, tags: value.split(",") });
-    };
-
-    const showToast = (message, type) => {
-        return toast({
-            title: message,
-            status: type
-        });
     };
 
     const editBlog = async () => {

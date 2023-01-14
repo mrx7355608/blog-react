@@ -1,19 +1,17 @@
-import { useToast, Button, Heading, Input } from "@chakra-ui/react";
+import { Button, Heading, Input } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import appConfig from "../../config/appConfig";
 import { useNavigate } from "react-router-dom";
+import BlogServices from "../Services/blog.services";
+import useShowToast from "../Hooks/useShowToast";
 
 export default function AdminCreateBlog() {
-    const [loading, setLoading] = useState(false);
+    const showToast = useShowToast();
+    const blogServices = new BlogServices();
     const editorRef = useRef(null);
     const navigateTo = useNavigate();
-    const toast = useToast({
-        position: "top-right",
-        isClosable: true,
-        duration: 5000,
-        variant: "left-accent"
-    });
+    const [loading, setLoading] = useState(false);
     const [blogData, setBlogData] = useState({
         title: "",
         body: "",
@@ -29,36 +27,19 @@ export default function AdminCreateBlog() {
         return setBlogData({ ...blogData, title: value });
     };
 
-    const showToast = (message) => {
-        return toast({
-            title: message,
-            status: "error"
-        });
-    };
-
     const createBlog = async () => {
         blogData.body = editorRef.current.getContent();
-        const url = `${appConfig.adminUrl}/blogs`;
-        const options = {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(blogData),
-            credentials: "include"
-        };
-
-        try {
-            setLoading(true);
-            const response = await fetch(url, options);
-            const result = await response.json();
-            setLoading(false);
-            if (!response.ok) return showToast(result.error);
-            return navigateTo("/admin/blogs");
-        } catch (err) {
-            showToast(err.message);
+        setLoading(true);
+        const { response, result, error } = await blogServices.create(blogData);
+        setLoading(false);
+        if (error) {
+            return showToast(error.message);
         }
+        if (!response.ok) {
+            return showToast(result.error);
+        }
+
+        return navigateTo("/admin/blogs");
     };
 
     return (

@@ -1,21 +1,11 @@
-import { Card, Button, HStack, Text, ButtonGroup, Box, useToast } from "@chakra-ui/react";
+import { Card, Button, HStack, Text, ButtonGroup, Box } from "@chakra-ui/react";
 import BlogServices from "../Services/blog.services";
 import { Link } from "react-router-dom";
+import useShowToast from "../Hooks/useShowToast";
 
 export function AdminBlogCard({ blog, setChanges }) {
     const blogServices = new BlogServices();
-    const toast = useToast({
-        variant: "left-accent",
-        isClosable: true,
-        duration: 5000,
-        position: "top-right"
-    });
-    const showToast = (message, type) => {
-        return toast({
-            title: message,
-            status: type
-        });
-    };
+    const showToast = useShowToast();
 
     const publish = async (id) => {
         const { response, result } = await blogServices.publish(id);

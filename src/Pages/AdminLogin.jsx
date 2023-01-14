@@ -1,6 +1,7 @@
 import { Text, Button, Flex, Heading, Input, Spinner } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import appConfig from "../../config/appConfig";
 import AuthServices from "../Services/auth.services";
 
 export default function AdminLogin() {
@@ -25,7 +26,7 @@ export default function AdminLogin() {
         setLoading(false);
         if (error) return setError(error);
         if (!response.ok) return setError({ message: result.error });
-        return navigateTo("/admin");
+        return navigateTo(`/${appConfig.clientAdminUrl}`);
     };
 
     return (

@@ -13,6 +13,7 @@ import AdminLogin from "./Pages/AdminLogin";
 import Admin from "./Pages/Admin";
 import AdminCreateBlog from "./Pages/AdminCreateBlog";
 import AdminEditBlog from "./Pages/AdminEditBlog";
+import appConfig from "../config/appConfig";
 
 export default function App() {
     return (
@@ -23,7 +24,7 @@ export default function App() {
                     <Route path="/blog/:id" element={<Blog />} />
                     <Route path="/about" element={<About />} />
                 </Route>
-                <Route path="admin" element={<AdminLayout />}>
+                <Route path={appConfig.clientAdminUrl} element={<AdminLayout />}>
                     <Route index element={<Admin />} />
                     <Route path="users" element={<UsersAdminPage />} />
                     <Route path="blogs">

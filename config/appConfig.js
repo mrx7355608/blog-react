@@ -2,4 +2,5 @@ export default {
   apiUrl: import.meta.env.VITE_API_URL,
   adminUrl: import.meta.env.VITE_ADMIN_URL,
   editorApiKey: import.meta.env.VITE_EDITOR_API_KEY,
+  clientAdminUrl: import.meta.env.VITE_CLIENT_ADMIN_URL,
 };

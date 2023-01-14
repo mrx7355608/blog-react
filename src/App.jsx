@@ -11,6 +11,7 @@ import About from "./Pages/About";
 import AdminLogin from "./Pages/AdminLogin";
 import Admin from "./Pages/Admin";
 import AdminCreateBlog from "./Pages/AdminCreateBlog";
+import AdminEditBlog from "./Pages/AdminEditBlog";
 
 export default function App() {
     return (
@@ -27,6 +28,7 @@ export default function App() {
                     <Route path="blogs">
                         <Route index element={<BlogsAdminPage />} />
                         <Route path="create" element={<AdminCreateBlog />} />
+                        <Route path="edit/:id" element={<AdminEditBlog />} />
                     </Route>
                 </Route>
                 <Route path="/admin/login" element={<AdminLogin />} />

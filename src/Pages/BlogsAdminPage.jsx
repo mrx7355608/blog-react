@@ -57,6 +57,7 @@ export default function BlogsAdminPage() {
     // const del = async (id) => {};
 
     useEffect(() => {
+        console.log(changes);
         if (!changes) return;
         const url = `${appConfig.adminUrl}/blogs`;
         (async function () {
@@ -105,9 +106,11 @@ export default function BlogsAdminPage() {
                             </Text>
                             <HStack justify="space-between">
                                 <ButtonGroup>
-                                    <Button size="sm" colorScheme="yellow">
-                                        Edit
-                                    </Button>
+                                    <Link to={"edit/" + blog._id}>
+                                        <Button size="sm" colorScheme="yellow">
+                                            Edit
+                                        </Button>
+                                    </Link>
                                     <Button
                                         onClick={async () => {
                                             await publish(blog._id);

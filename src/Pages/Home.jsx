@@ -14,7 +14,7 @@ export default function Home() {
     return (
         <Container maxW="700px" py="6">
             <Searchbar url={url} setUrl={setUrl} />
-            <TagsList url={url} setUrl={setUrl} />
+            {loading ? null : <TagsList blogs={blogs} url={url} setUrl={setUrl} />}
             {error ? <Heading>{error.message}</Heading> : null}
             {loading ? (
                 <Flex mt="9" w="full" justify="center">

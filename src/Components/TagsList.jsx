@@ -3,9 +3,18 @@ import { Flex, Tag } from "@chakra-ui/react";
 import { UrlQueryGenerator } from "../UrlGenerator";
 import appConfig from "../../config/appConfig";
 
-export default function TagsList({ setUrl, url }) {
-    const tags = ["discussion", "git", "linux", "expressjs", "docker"];
+export default function TagsList({ blogs, setUrl, url }) {
     const [selectedTags, setSelectedTags] = useState([]);
+    const [tags, setTags] = useState([]);
+    useEffect(() => {
+        const newarr = [];
+        blogs.forEach((blog) => {
+            newarr.push(...blog.tags);
+        });
+
+        const tagsSet = new Set(newarr);
+        setTags(Array.from(tagsSet));
+    }, []);
 
     const toggleSelected = (tag) => {
         if (!selectedTags.includes(tag)) {

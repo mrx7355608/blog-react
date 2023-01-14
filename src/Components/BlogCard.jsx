@@ -37,9 +37,10 @@ export default function Blog({ blog }) {
                 })}
             </Flex>
             <Text
+                fontFamily={"sans-serif"}
                 letterSpacing={0.5}
-                fontSize="19px"
-                lineHeight={1.6}
+                fontSize="16px"
+                lineHeight={1.8}
                 color="gray.400"
                 fontWeight={500}
                 mt="4">

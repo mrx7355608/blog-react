@@ -37,7 +37,7 @@ export default function Navbar() {
             bg="transparent"
             p="4">
             <Heading fontSize="4xl" color="red.600">
-                <Link to="/">Just A Dev</Link>
+                <Link to="/">Just_Dev</Link>
             </Heading>
             <Box display={{ lg: "none" }}>
                 <MobileSideMenu />

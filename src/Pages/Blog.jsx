@@ -1,4 +1,13 @@
-import { Flex, Tag, Text, Container, Heading, Spinner } from "@chakra-ui/react";
+import {
+    Flex,
+    Tag,
+    Text,
+    Container,
+    Heading,
+    Spinner,
+    ButtonGroup,
+    Button
+} from "@chakra-ui/react";
 import parse from "html-react-parser";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import React from "react";
@@ -46,9 +55,8 @@ export default function Blog() {
                             );
                         })}
                     </Flex>
-                    <Text my="5">
-                        <Prose>{parse(blog.body)}</Prose>
-                    </Text>
+
+                    <Prose>{parse(blog.body)}</Prose>
                 </>
             ) : null}
         </Container>

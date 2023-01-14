@@ -8,9 +8,28 @@ export const myTheme = extendTheme(
             useSystemColorMode: false
         },
         fonts: {
-            heading: "Cookie, sans-serif",
-            body: "Rajdhani,sans-serif"
+            heading: "Rajdhani,sans-serif",
+            body: "Rajdhani, sans-serif"
         }
     },
-    withProse()
+    withProse({
+        baseStyle: {
+            span: {
+                fontSize: "13pt",
+                fontWeight: 500
+            },
+            p: {
+                fontFamily: "sans-serif",
+                fontWeight: 500,
+                lineHeight: "33px",
+                wordSpacing: "2px",
+                fontSize: "13pt",
+                color: "#c1bbbb"
+            },
+            "h2, h2 > span": {
+                fontSize: "28pt",
+                fontWeight: 700
+            }
+        }
+    })
 );

@@ -5,6 +5,7 @@ import AdminPageSidebar from "../Components/AdminPageSidebar";
 import UserContext from "../Contexts/UserContext";
 import useAdminFetch from "../Hooks/useAdminFetch";
 import appConfig from "../../config/appConfig";
+import React from "react";
 
 export default function AdminLayout() {
     // Checks if the user is authenticated and is Admin
@@ -29,7 +30,9 @@ export default function AdminLayout() {
             <Navbar />
             <Flex>
                 <AdminPageSidebar />
-                <Outlet />
+                <React.Suspense fallback={<Spinner />}>
+                    <Outlet />
+                </React.Suspense>
             </Flex>
         </UserContext.Provider>
     );

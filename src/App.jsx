@@ -1,18 +1,20 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Layout
 import MainLayout from "./Layouts/MainLayout";
-import AdminLayout from "./Layouts/AdminLayout";
+const AdminLayout = React.lazy(() => import("./Layouts/AdminLayout"));
 // Pages
 import Home from "./Pages/Home";
 import NotFound from "./Pages/NotFound";
-import UsersAdminPage from "./Pages/UsersAdminPage";
-import BlogsAdminPage from "./Pages/BlogsAdminPage";
-import Blog from "./Pages/Blog";
-import About from "./Pages/About";
-import AdminLogin from "./Pages/AdminLogin";
-import Admin from "./Pages/Admin";
-import AdminCreateBlog from "./Pages/AdminCreateBlog";
-import AdminEditBlog from "./Pages/AdminEditBlog";
+const UsersAdminPage = React.lazy(() => import("./Pages/UsersAdminPage"));
+const BlogsAdminPage = React.lazy(() => import("./Pages/BlogsAdminPage"));
+const Blog = React.lazy(() => import("./Pages/Blog"));
+const About = React.lazy(() => import("./Pages/About"));
+const AdminLogin = React.lazy(() => import("./Pages/AdminLogin"));
+const Admin = React.lazy(() => import("./Pages/Admin"));
+const AdminCreateBlog = React.lazy(() => import("./Pages/AdminCreateBlog"));
+const AdminEditBlog = React.lazy(() => import("./Pages/AdminEditBlog"));
+// config
 import appConfig from "../config/appConfig";
 
 export default function App() {
@@ -33,7 +35,7 @@ export default function App() {
                         <Route path="edit/:id" element={<AdminEditBlog />} />
                     </Route>
                 </Route>
-                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path={`/${appConfig.clientAdminUrl}/login`} element={<AdminLogin />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

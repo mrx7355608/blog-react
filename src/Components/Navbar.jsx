@@ -64,7 +64,7 @@ export default function Navbar() {
                     <FaEnvelope
                         onClick={() => {
                             onCopy();
-                            showToast();
+                            showToast("Email has been copied to clipboard", "info");
                         }}
                         size="16px"
                     />

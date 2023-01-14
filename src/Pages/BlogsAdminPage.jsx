@@ -10,14 +10,11 @@ export default function BlogsAdminPage() {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
 
-    // const edit = async (id) => {};
-    // const del = async (id) => {};
-
     useEffect(() => {
         if (!changes) return;
-        const url = `${appConfig.adminUrl}/blogs`;
         (async function () {
             try {
+                const url = `${appConfig.adminUrl}/blogs`;
                 const response = await fetch(url, {
                     mode: "cors",
                     credentials: "include"
@@ -35,7 +32,6 @@ export default function BlogsAdminPage() {
     }, [changes]);
 
     if (loading) return <Spinner />;
-
     if (error) {
         return <Heading>{error.message}</Heading>;
     }

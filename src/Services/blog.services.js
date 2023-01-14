@@ -51,7 +51,27 @@ class BlogServices {
             return { response: null, result: null, error: err };
         }
     }
-    async delete() {}
+
+    // Edit
+    async edit({ id, data }) {
+        try {
+            const url = `${appConfig.adminUrl}/blogs/update/${id}`;
+            const options = {
+                method: "PATCH",
+                mode: "cors",
+                credentials: "include",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            };
+            const response = await fetch(url, options);
+            const result = await response.json();
+            return { response, result, error: null };
+        } catch (err) {
+            return { response: null, result: null, error: err };
+        }
+    }
 }
 
 export default BlogServices;

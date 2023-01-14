@@ -1,11 +1,18 @@
-import { Button, Heading, Input, Spinner } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
-import appConfig from "../../config/appConfig";
+import React, { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Button, Heading, Input, Spinner } from "@chakra-ui/react";
+import { Editor } from "@tinymce/tinymce-react";
+// Hooks
 import useShowToast from "../Hooks/useShowToast";
+import useAdminFetch from "../Hooks/useAdminFetch";
+// Others
+import appConfig from "../../config/appConfig";
+import BlogServices from "../Services/blog.services";
 
 export default function AdminEditBlog() {
+    // Fetch blog content
+    const { loading, data: blog, error } = useAdminFetch();
+    const blogServices = new BlogServices();
     const { id } = useParams();
     const editorRef = useRef(null);
     const showToast = useShowToast();
@@ -14,36 +21,6 @@ export default function AdminEditBlog() {
         body: "",
         tags: []
     });
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    // Fetch blog content
-    useEffect(() => {
-        const url = `${appConfig.adminUrl}/blogs/${id}`;
-        const options = {
-            method: "GET",
-            mode: "cors",
-            credentials: "include"
-        };
-
-        (async function () {
-            try {
-                const response = await fetch(url, options);
-                const result = await response.json();
-                setLoading(false);
-                delete result._id;
-                delete result.__v;
-                delete result.createdAt;
-                delete result.updatedAt;
-                delete result.published;
-                if (!response.ok) return setError({ message: result.error });
-                setData(result);
-            } catch (err) {
-                setLoading(false);
-                setError(err);
-            }
-        })();
-    }, []);
 
     if (loading) return <Spinner />;
     if (error) return <Heading>{error.message}</Heading>;
@@ -56,27 +33,10 @@ export default function AdminEditBlog() {
 
     const editBlog = async () => {
         data.body = editorRef.current.getContent();
-        console.log(data);
-        const url = `${appConfig.adminUrl}/blogs/update/${id}`;
-        const options = {
-            method: "PATCH",
-            mode: "cors",
-            credentials: "include",
-            body: JSON.stringify(data),
-            headers: {
-                "Content-type": "application/json"
-            }
-        };
-
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            if (!response.ok) return showToast(result.error, "error");
-            return showToast(result.message, "success");
-        } catch (err) {
-            setLoading(false);
-            setError(err);
-        }
+        const { response, result, error } = await blogServices.edit({ id, data });
+        if (!response.ok) return showToast(result.error, "error");
+        if (error) return showToast(error.message, "error");
+        return showToast(result.message, "success");
     };
 
     return (
@@ -92,12 +52,12 @@ export default function AdminEditBlog() {
                     name="title"
                     mb="3"
                     placeholder="Title"
-                    value={data.title}
+                    value={blog.title}
                 />
                 <Editor
                     textareaName="body"
                     apiKey={appConfig.editorApiKey}
-                    initialValue={data.body}
+                    initialValue={blog.body}
                     onInit={(evt, editor) => (editorRef.current = editor)}
                     init={{
                         height: 500,
@@ -135,17 +95,12 @@ export default function AdminEditBlog() {
                     onChange={handleChange}
                     name="tags"
                     placeholder="Tags"
-                    value={data.tags.join(",")}
+                    value={blog.tags.join(",")}
                 />
-                {loading ? (
-                    <Button disabled w="full" my="5" colorScheme="red" type="submit">
-                        Edit
-                    </Button>
-                ) : (
-                    <Button w="full" my="5" colorScheme="red" type="submit">
-                        Edit
-                    </Button>
-                )}
+
+                <Button w="full" my="5" colorScheme="red" type="submit">
+                    Edit
+                </Button>
             </form>
         </>
     );

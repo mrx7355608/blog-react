@@ -1,16 +1,17 @@
 import { Text, Button, Flex, Heading, Input, Spinner } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import appConfig from "../../config/appConfig";
+import AuthServices from "../Services/auth.services";
 
 export default function AdminLogin() {
+    const authServices = new AuthServices();
+    const navigateTo = useNavigate();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [creds, setCreds] = useState({
         email: "",
         password: ""
     });
-    const navigateTo = useNavigate();
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -19,26 +20,12 @@ export default function AdminLogin() {
     };
 
     const login = async () => {
-        const url = `${appConfig.adminUrl}/login`;
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(creds),
-            credentials: "include"
-        };
-
         setLoading(true);
-        try {
-            const resp = await fetch(url, options);
-            const res = await resp.json();
-            setLoading(false);
-            if (!resp.ok) return setError({ message: res.error });
-            return navigateTo("/admin");
-        } catch (err) {
-            setError(err);
-        }
+        const { response, result, error } = await authServices.login(creds);
+        setLoading(false);
+        if (error) return setError(error);
+        if (!response.ok) return setError({ message: result.error });
+        return navigateTo("/admin");
     };
 
     return (

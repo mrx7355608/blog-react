@@ -33,10 +33,10 @@ export default function AdminCreateBlog() {
         const { response, result, error } = await blogServices.create(blogData);
         setLoading(false);
         if (error) {
-            return showToast(error.message);
+            return showToast(error.message, "error");
         }
         if (!response.ok) {
-            return showToast(result.error);
+            return showToast(result.error, "error");
         }
 
         return navigateTo("/admin/blogs");

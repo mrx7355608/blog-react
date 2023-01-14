@@ -4,6 +4,7 @@ import MainLayout from "./Layouts/MainLayout";
 import AdminLayout from "./Layouts/AdminLayout";
 // Pages
 import Home from "./Pages/Home";
+import NotFound from "./Pages/NotFound";
 import UsersAdminPage from "./Pages/UsersAdminPage";
 import BlogsAdminPage from "./Pages/BlogsAdminPage";
 import Blog from "./Pages/Blog";
@@ -32,6 +33,7 @@ export default function App() {
                     </Route>
                 </Route>
                 <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );

@@ -1,28 +1,10 @@
 import { Container, Heading, Spinner, Text } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import appConfig from "../../config/appConfig";
+import useAdminFetch from "../Hooks/useAdminFetch";
 
 export default function Admin() {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [stats, setStats] = useState([]);
-
-    useEffect(() => {
-        const url = `${appConfig.adminUrl}/stats`;
-        const options = {
-            method: "GET",
-            mode: "cors",
-            credentials: "include"
-        };
-        (async function () {
-            setLoading(true);
-            const response = await fetch(url, options);
-            const result = await response.json();
-            if (!response.ok) setError({ message: result.error });
-            setLoading(false);
-            setStats(result);
-        })();
-    }, []);
+    const { loading, data: stats, error } = useAdminFetch(`${appConfig.adminUrl}/stats`);
 
     if (loading) return <Spinner />;
     if (error) return <Heading>{error.message}</Heading>;

@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 export default function Blog({ blog }) {
     return (
         <Flex bg="transparent" my="9" direction="column">
-            <Text fontSize={{ base: "md", lg: "lg" }} color="gray.600" fontWeight={500}>
+            <Text fontSize={{ base: "md", lg: "lg" }} color="gray.500" fontWeight={600}>
                 {new Date(blog.createdAt).toDateString()}
             </Text>
             <Heading

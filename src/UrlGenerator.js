@@ -17,6 +17,10 @@ export const UrlQueryGenerator = ({ url, query }) => {
             // return new query string
             return qs.stringify(queryObject).replaceAll("%2C", ",");
         }
+        if (query === "page") {
+            queryObject.page = newValue;
+            return qs.stringify(queryObject).replaceAll("%2C", ",");
+        }
 
         // Tags query
         // Check if newValues(its an array) contains values

@@ -6,9 +6,11 @@ export default function useFetch(url) {
     const [error, setError] = React.useState(null);
 
     React.useEffect(() => {
+        console.log("calling api for blogs");
         fetch(url)
             .then(async (resp) => {
                 const result = await resp.json();
+                console.log(result.length);
                 if (!resp.ok) return setError({ message: result.error });
                 return result;
             })

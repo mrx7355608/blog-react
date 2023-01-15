@@ -16,6 +16,7 @@ const AdminCreateBlog = React.lazy(() => import("./Pages/AdminCreateBlog"));
 const AdminEditBlog = React.lazy(() => import("./Pages/AdminEditBlog"));
 // config
 import appConfig from "../config/appConfig";
+import { Spinner } from "@chakra-ui/react";
 
 export default function App() {
     return (
@@ -35,7 +36,14 @@ export default function App() {
                         <Route path="edit/:id" element={<AdminEditBlog />} />
                     </Route>
                 </Route>
-                <Route path={`/${appConfig.clientAdminUrl}/login`} element={<AdminLogin />} />
+                <Route
+                    path={`/${appConfig.clientAdminUrl}/login`}
+                    element={
+                        <React.Suspense fallback={<Spinner />}>
+                            <AdminLogin />
+                        </React.Suspense>
+                    }
+                />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

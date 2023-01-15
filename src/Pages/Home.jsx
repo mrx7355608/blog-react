@@ -14,14 +14,14 @@ export default function Home() {
     return (
         <Container maxW="700px" py="6">
             <Searchbar url={url} setUrl={setUrl} />
-            {loading ? null : <TagsList blogs={blogs} url={url} setUrl={setUrl} />}
-            {error ? <Heading>{error.message}</Heading> : null}
+            {loading || error ? null : <TagsList blogs={blogs} url={url} setUrl={setUrl} />}
+            {error ? <Heading my="9">{error.message}</Heading> : null}
             {loading ? (
                 <Flex mt="9" w="full" justify="center">
                     <Spinner />
                 </Flex>
             ) : null}
-            {blogs && !loading
+            {blogs && !loading && !error
                 ? blogs.map((blog) => {
                       return <BlogCard key={blog._id} blog={blog} />;
                   })

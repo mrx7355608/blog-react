@@ -7,13 +7,20 @@ export default function useFetch(url) {
 
     React.useEffect(() => {
         fetch(url)
-            .then((resp) => resp.json())
+            .then(async (resp) => {
+                const result = await resp.json();
+                if (!resp.ok) return setError({ message: result.error });
+                return result;
+            })
             .then((r) => {
                 setLoading(false);
                 setData(r);
             })
             .catch((err) => {
                 setLoading(false);
+                if (err.name === "TypeError") {
+                    return setError({ message: "It seems that the server is down" });
+                }
                 setError(err);
             });
     }, [url]);

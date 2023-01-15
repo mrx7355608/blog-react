@@ -39,7 +39,7 @@ export default function AdminCreateBlog() {
             return showToast(result.error, "error");
         }
 
-        return navigateTo("/admin/blogs");
+        return navigateTo(`/${appConfig.clientAdminUrl}/blogs`);
     };
 
     return (
@@ -80,7 +80,16 @@ export default function AdminCreateBlog() {
                     }}
                 />
 
-                <Input name="tags" onChange={(e) => handleOnChange(e)} placeholder="Tags" />
+                <Input
+                    name="tags"
+                    onChange={(e) => handleOnChange(e)}
+                    placeholder="Tags should be separated by ,"
+                    my="5"
+                    _placeholder={{
+                        fontWeight: "600",
+                        opacity: 0.9
+                    }}
+                />
                 {loading ? (
                     <Button disabled w="full" my="5" colorScheme="red" type="submit">
                         Create

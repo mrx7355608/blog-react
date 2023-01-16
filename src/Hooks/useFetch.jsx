@@ -1,20 +1,24 @@
 import React from "react";
 
+const cache = {};
+
 export default function useFetch(url) {
     const [loading, setLoading] = React.useState(true);
     const [data, setData] = React.useState(null);
     const [error, setError] = React.useState(null);
-    const cache = React.useRef({});
 
     React.useEffect(() => {
+        if (cache[url]) {
+            console.log("sent data from cache");
+            setLoading(false);
+            return setData(cache[url]);
+        }
         console.log("calling api for blogs");
-        console.log(url);
         fetch(url)
             .then(async (resp) => {
                 const result = await resp.json();
-                console.log(result.length);
                 if (!resp.ok) return setError({ message: result.error });
-                cache.current[url] = result;
+                cache[url] = result;
                 return result;
             })
             .then((r) => {

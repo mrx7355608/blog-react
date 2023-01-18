@@ -47,13 +47,7 @@ export default function AdminEditBlog() {
                     await editBlog();
                 }}>
                 <Heading mb="5">Edit Blog</Heading>
-                <Input
-                    onChange={handleChange}
-                    name="title"
-                    mb="3"
-                    placeholder="Title"
-                    value={blog.title}
-                />
+                <Input onChange={handleChange} name="title" mb="3" placeholder="Title" />
                 <Editor
                     textareaName="body"
                     apiKey={appConfig.editorApiKey}
@@ -91,12 +85,7 @@ export default function AdminEditBlog() {
                     }}
                 />
 
-                <Input
-                    onChange={handleChange}
-                    name="tags"
-                    placeholder="Tags"
-                    value={blog.tags.join(",")}
-                />
+                <Input onChange={handleChange} name="tags" placeholder="Tags" />
 
                 <Button w="full" my="5" colorScheme="red" type="submit">
                     Edit

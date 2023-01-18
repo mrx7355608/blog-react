@@ -24,7 +24,6 @@ export default function useFetch(url) {
                 setData(r);
             })
             .catch((err) => {
-                console.log(err);
                 setLoading(false);
                 if (err.name === "TypeError") {
                     return setError({ message: "It seems that the server is down" });

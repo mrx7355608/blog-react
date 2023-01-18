@@ -10,7 +10,6 @@ import appConfig from "../../config/appConfig";
 import usePagination from "../Hooks/usePagination";
 
 export default function Home() {
-    console.log(appConfig);
     const [url, setUrl] = useState(`${appConfig.apiUrl}/blogs?`);
     const { loading, data, error } = useFetch(url);
     const { isMoreContent, blogs, paginate } = usePagination({ url, setUrl, loading, error, data });

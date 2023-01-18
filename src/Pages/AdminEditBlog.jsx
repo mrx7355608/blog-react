@@ -11,9 +11,9 @@ import BlogServices from "../Services/blog.services";
 
 export default function AdminEditBlog() {
     // Fetch blog content
+    const { id } = useParams();
     const { loading, data: blog, error } = useAdminFetch(`${appConfig.adminUrl}/blogs/${id}`);
     const blogServices = new BlogServices();
-    const { id } = useParams();
     const editorRef = useRef(null);
     const showToast = useShowToast();
     const [data, setData] = useState({

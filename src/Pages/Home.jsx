@@ -32,7 +32,7 @@ export default function Home() {
                     hasMore={isMoreContent}
                     next={paginate}
                     loader={<Spinner />}
-                    endMessage={<Heading>End</Heading>}>
+                    endMessage={<Heading color="gray.700">End</Heading>}>
                     {blogs.map((blog) => {
                         return <BlogCard key={blog._id} blog={blog} />;
                     })}

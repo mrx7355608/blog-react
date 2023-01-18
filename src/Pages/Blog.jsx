@@ -1,13 +1,4 @@
-import {
-    Flex,
-    Tag,
-    Text,
-    Container,
-    Heading,
-    Spinner,
-    ButtonGroup,
-    Button
-} from "@chakra-ui/react";
+import { Flex, Tag, Text, Container, Heading, Spinner } from "@chakra-ui/react";
 import parse from "html-react-parser";
 import { Prose } from "@nikolovlazar/chakra-ui-prose";
 import React from "react";
@@ -22,7 +13,7 @@ export default function Blog() {
     return (
         <Container py="9" maxW="800px">
             {loading ? <Spinner /> : null}
-            {error ? <Heading>{error}</Heading> : null}
+            {error ? <Heading>{error.message}</Heading> : null}
             {blog && !loading ? (
                 <>
                     <Text color="gray.500" fontWeight={600} fontSize={{ base: "md", lg: "xl" }}>

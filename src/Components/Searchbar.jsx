@@ -24,7 +24,6 @@ export default function Searchbar({ url, setUrl }) {
         if (!searchVal) {
             if (!url.includes("title")) return;
             const newQuery = create("");
-            console.log({ newQuery });
             return setUrl(appConfig.apiUrl + "/blogs?" + newQuery);
         }
 

@@ -26,27 +26,11 @@ export default function Navbar() {
             bg="transparent"
             p="4">
             <Heading fontSize="4xl" color="red.600">
-                <Link to="/">Just_Dev</Link>
+                <Link to="/">Blog</Link>
             </Heading>
             <Box display={{ lg: "none" }}>
                 <MobileSideMenu />
             </Box>
-            <Flex
-                py="1"
-                display={{ base: "none", lg: "flex" }}
-                justify="center"
-                alignItems="center"
-                gap="9">
-                <Text fontWeight="600">
-                    <Link to="/">HOME</Link>
-                </Text>
-                <Text fontWeight="600">
-                    <Link to="/">PORTFOLIO</Link>
-                </Text>
-                <Text fontWeight="600">
-                    <Link to="/about">ABOUT ME</Link>
-                </Text>
-            </Flex>
             <HStack display={{ base: "none", lg: "flex" }} gap="4" py="2">
                 <ChakraLink href="https://www.facebook.com/fdas23/" isExternal>
                     <FaFacebook size="16px" />

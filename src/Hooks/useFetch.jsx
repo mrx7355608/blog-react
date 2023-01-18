@@ -9,11 +9,9 @@ export default function useFetch(url) {
 
     React.useEffect(() => {
         if (cache[url]) {
-            console.log("sent data from cache");
             setLoading(false);
             return setData(cache[url]);
         }
-        console.log("calling api for blogs");
         fetch(url)
             .then(async (resp) => {
                 const result = await resp.json();

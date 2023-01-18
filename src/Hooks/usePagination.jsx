@@ -8,7 +8,6 @@ export default function usePagination({ url, setUrl, loading, error, data }) {
     const [page, setPage] = useState(1);
 
     function stopPagination() {
-        console.log("ASDFASDF");
         setIsMoreContent(false);
     }
     function resetPagination() {

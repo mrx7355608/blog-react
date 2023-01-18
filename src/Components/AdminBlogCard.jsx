@@ -27,7 +27,6 @@ export function AdminBlogCard({ blog, setChanges }) {
             </Text>
             <HStack justify="space-between">
                 <ButtonGroup>
-                    {console.log(blog)}
                     <Link to={"edit/" + blog._id}>
                         <Button size="sm" colorScheme="yellow">
                             Edit

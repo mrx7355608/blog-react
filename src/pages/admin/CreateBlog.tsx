@@ -7,6 +7,7 @@ interface IBlogInputData {
     title: string;
     content: string;
     tags: string;
+    summary: string;
     is_published: string;
 }
 interface IBlogData {
@@ -23,6 +24,7 @@ export const CreateBlog = () => {
         tags: "",
         content: "",
         is_published: "published",
+        summary: "",
     });
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
@@ -56,6 +58,7 @@ export const CreateBlog = () => {
                 }}
                 initialValue="Write your blog here"
             />
+            {/* Blog tags input box */}
             <p className="mt-8 mb-2 text-lg mt-8">Tags</p>
             <input
                 className="input input-bordered w-full"
@@ -63,6 +66,15 @@ export const CreateBlog = () => {
                 onChange={handleChange}
                 placeholder="Add tags (separated by comma)"
             />
+
+            {/* Blog summary input box */}
+            <p className="mt-8 mb-2 text-lg mt-8">Summary</p>
+            <textarea
+                className="input input-bordered w-full"
+                name="summary"
+                onChange={handleChange}
+                placeholder="Write brief and concise blog summary"
+            ></textarea>
 
             {/* Select publishing status */}
             <p className="mt-8 mb-2 text-lg">Select publishing status</p>
@@ -91,7 +103,9 @@ export const CreateBlog = () => {
     );
 
     function handleChange(
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+        e: React.ChangeEvent<
+            HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+        >,
     ) {
         const { name, value } = e.target;
         setBlogData({ ...blogData, [name]: value });
@@ -99,15 +113,11 @@ export const CreateBlog = () => {
 
     function createBlogDataObject() {
         setLoading(true);
-        const content = editorRef.current?.editor?.getContent();
-        if (!content) {
-            setLoading(false);
-            return setError("");
-        }
+        const blogContent = editorRef.current?.editor?.getContent() || "";
 
         const data: IBlogData = {
             ...blogData,
-            content: content,
+            content: blogContent,
             is_published: blogData.is_published === "draft" ? false : true,
             tags: blogData.tags.split(","),
         };
@@ -115,30 +125,26 @@ export const CreateBlog = () => {
     }
 
     async function createBlog() {
-        try {
-            const data = createBlogDataObject();
+        const data = createBlogDataObject();
 
-            // Make api call to create blog
-            const url = "http://localhost:8000/api/blogs";
-            const response = await fetch(url, {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-            const result = await response.json();
-            if (!result.ok) {
-                setError(result.error);
-                setLoading(false);
-            } else {
-                setSuccessMessage("Blog has been created successfully!");
-                setLoading(false);
-            }
-        } catch (err: unknown) {
-            setError((err as Error).message);
-            setLoading(false);
-        }
+        // Make api call to create blog
+        fetch("http://localhost:8000/api/blogs", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                if (data.error) {
+                    setError(data.error);
+                } else {
+                    setSuccessMessage("Blog has been published!");
+                }
+            })
+            .catch(() => setError("Something went wrong!"))
+            .finally(() => setLoading(false));
     }
 };

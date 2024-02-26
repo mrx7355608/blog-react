@@ -46,11 +46,11 @@ const router = createBrowserRouter([
                 path: "create-blog",
                 element: <CreateBlog />,
             },
-            {
-                path: "login",
-                element: <Login />,
-            },
         ],
+    },
+    {
+        path: "/admin/login",
+        element: <Login />,
     },
 ]);
 

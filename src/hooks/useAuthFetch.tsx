@@ -18,13 +18,13 @@ export default function useAuthFetch<T>(url: string) {
         })
             .then((resp) => resp.json())
             .then((data: IApiResponse<T>) => {
-                if (!data.ok && data.error) {
+                if (data.error) {
                     setError(data.error);
                 } else {
                     setResponse(data);
                 }
             })
-            .catch((err) => setError((err as Error).message))
+            .catch(() => setError("Something went wrong!"))
             .finally(() => setLoading(false));
     }, [url]);
 

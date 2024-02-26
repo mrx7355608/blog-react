@@ -1,18 +1,13 @@
 import {
+    Dispatch,
     ReactNode,
     SetStateAction,
-    Dispatch,
     createContext,
     useContext,
     useState,
 } from "react";
 
-const initialState = {
-    admin: {},
-    setAdmin: () => null,
-};
-
-interface IAdmin {
+export interface IAdmin {
     name: string;
     username: string;
 }
@@ -22,11 +17,19 @@ interface IAdminContext {
     setAdmin: Dispatch<SetStateAction<IAdmin>>;
 }
 
-const AdminContext = createContext(initialState);
+const initialState = {
+    admin: {
+        name: "",
+        username: "",
+    },
+    setAdmin: () => null,
+};
+
+const AdminContext = createContext<IAdminContext>(initialState);
 export const useAdminContext = () => useContext(AdminContext);
 
 export default function AdminProvider({ children }: { children: ReactNode }) {
-    const [admin, setAdmin] = useState<IAdmin>({});
+    const [admin, setAdmin] = useState<IAdmin>(initialState.admin);
     return (
         <AdminContext.Provider value={{ admin, setAdmin }}>
             {children}

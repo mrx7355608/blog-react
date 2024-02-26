@@ -98,6 +98,7 @@ export const CreateBlog = () => {
     }
 
     function createBlogDataObject() {
+        setLoading(true);
         const content = editorRef.current?.editor?.getContent();
         if (!content) {
             setLoading(false);

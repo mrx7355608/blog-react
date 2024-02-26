@@ -77,6 +77,12 @@ export const CreateBlog = () => {
                 <option value="draft">Draft</option>
             </select>
 
+            {error ? (
+                <p className="bg-red-200 text-red-700 text-lg font-medium p-3 w-full mt-3 rounded-md">
+                    {error}
+                </p>
+            ) : null}
+
             {/* Create blog button */}
             <button onClick={createBlog} className="mt-8 btn btn-info w-full">
                 {loading ? <Spinner /> : "Create blog"}

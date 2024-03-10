@@ -23,7 +23,6 @@ export const AdminLayout = () => {
                     navTo("/");
                 }
             })
-            .catch(() => setShowInternalError(true))
             .finally(() => setLoading(false));
     }, [navTo]);
 

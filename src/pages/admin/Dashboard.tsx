@@ -9,7 +9,7 @@ export const Dashboard = () => {
     const [logoutLoading, setLogoutLoading] = useState(false);
     const navTo = useNavigate();
     const { loading, error, response } = useAuthFetch<IBlog[]>(
-        "http://localhost:8000/api/blogs",
+        "http://localhost:8000/api/blogs"
     );
 
     return (

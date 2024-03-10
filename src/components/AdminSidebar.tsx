@@ -29,7 +29,7 @@ export const AdminSidebar = () => {
         "bg-transparent cursor-pointer w-full p-4 rounded-lg hover:bg-gray-200";
 
     return (
-        <div className="flex flex-col w-1/4 bg-gray-100 h-screen p-4 gap-2">
+        <div className="flex flex-col w-1/4 h-screen p-4 gap-2">
             {links.map((link) => {
                 return (
                     <NavLink

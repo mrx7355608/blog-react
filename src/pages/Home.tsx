@@ -6,7 +6,7 @@ import Searchbar from "../components/Searchbar";
 
 export const Home = () => {
     const { loading, error, response } = useAuthFetch<IBlog[]>(
-        "http://localhost:8000/api/blogs/published?page=1"
+        "http://localhost:8000/api/blogs/published?page=2"
     );
     return (
         <div className="flex items-start gap-2 py-12 px-8">

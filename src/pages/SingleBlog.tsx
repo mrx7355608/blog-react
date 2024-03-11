@@ -1,8 +1,12 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAuthFetch from "../hooks/useAuthFetch";
 import { IBlog } from "../types/blog";
 import { Spinner } from "../components/Spinner";
+import Prism from "prismjs";
 import ReactHtmlParser from "react-html-parser";
+import { useEffect } from "react";
+
+Prism.manual = true;
 
 export const SingleBlog = () => {
     const { slug } = useParams();
@@ -20,6 +24,10 @@ export const SingleBlog = () => {
 };
 
 function Blog({ blog }: { blog: IBlog }) {
+    useEffect(() => {
+        Prism.highlightAll();
+    }, []);
+
     return (
         <div className="w-2/3 mx-auto">
             <h1 className="text-4xl font-black">{blog.title}</h1>

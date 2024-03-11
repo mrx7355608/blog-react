@@ -2,11 +2,14 @@ import { useParams } from "react-router-dom";
 import useAuthFetch from "../hooks/useAuthFetch";
 import { IBlog } from "../types/blog";
 import { Spinner } from "../components/Spinner";
-import Prism from "prismjs";
 import ReactHtmlParser from "react-html-parser";
 import { useEffect } from "react";
-
-Prism.manual = true;
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
+import "prismjs/components/prism-java";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-c";
+import "prismjs/components/prism-cpp";
 
 export const SingleBlog = () => {
     const { slug } = useParams();
@@ -37,7 +40,7 @@ function Blog({ blog }: { blog: IBlog }) {
                     <Tag tag={tag} key={index} />
                 ))}
             </div>
-            {ReactHtmlParser(blog.content)}
+            <div className="no-tw-base">{ReactHtmlParser(blog.content)}</div>
         </div>
     );
 }

@@ -2,7 +2,6 @@ import { BlogCard } from "../components/BlogCard";
 import { Spinner } from "../components/Spinner";
 import { IBlog } from "../types/blog";
 import useAuthFetch from "../hooks/useAuthFetch";
-import Searchbar from "../components/Searchbar";
 
 export const Home = () => {
     const { loading, error, response } = useAuthFetch<IBlog[]>(

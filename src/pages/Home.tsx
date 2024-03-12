@@ -9,8 +9,8 @@ export const Home = () => {
         "http://localhost:8000/api/blogs/published?page=1"
     );
     return (
-        <div className="bg-black flex items-start gap-2 py-12 px-8">
-            <div className="flex items-center justify-start flex-col w-3/4">
+        <div className="bg-black flex items-start gap-3 py-12 px-12">
+            <div className="flex items-center justify-start flex-col mr-12 w-3/4">
                 {loading && <Spinner />}
                 {error && (
                     <p className="text-red-700 font-bold text-lg">{error}</p>

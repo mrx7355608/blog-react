@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { IBlog } from "../types/blog";
 import Tag from "./Tag";
+import { FaArrowRight } from "react-icons/fa";
 
 export const BlogCard = ({ blog }: { blog: IBlog }) => {
     return (
-        <div className="flex flex-col p-3 my-4">
+        <div className="flex flex-col p-3 my-4 w-full">
             <Link to={`/${blog.slug}`}>
                 <h1 className="text-3xl font-bold inline text-gray-100 hover:underline hover:text-red-800">
                     {blog.title}
@@ -23,6 +24,9 @@ export const BlogCard = ({ blog }: { blog: IBlog }) => {
             <p className="text-gray-400 mt-4 mb-12 leading-6 font-normal">
                 {blog.summary}
             </p>
+            <button className="btn bg-transparent text-yellow-500 border-0 outline-0 w-24 ml-auto mb-5">
+                READ <FaArrowRight color="inherit" />
+            </button>
             <hr className="border-gray-800" />
         </div>
     );

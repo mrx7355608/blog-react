@@ -14,11 +14,11 @@ import "prismjs/components/prism-cpp";
 export const SingleBlog = () => {
     const { slug } = useParams();
     const { loading, error, response } = useAuthFetch<IBlog>(
-        `http://localhost:8000/api/blogs/${slug}`
+        `${import.meta.env.VITE_SERVER_URL}/api/blogs/${slug}`,
     );
 
     return (
-        <div className="min-h-screen w-full py-12">
+        <div className="bg-black min-h-screen w-full py-12">
             {loading && <Spinner />}
             {error && <p className="text-red-700 font-bold text-lg">{error}</p>}
             {response ? <Blog blog={response.data} /> : null}
@@ -32,10 +32,10 @@ function Blog({ blog }: { blog: IBlog }) {
     }, []);
 
     return (
-        <div className="w-2/3 mx-auto">
+        <div className="w-full px-11 lg:px-0 lg:w-2/3 mx-auto">
             <h1 className="text-4xl font-black">{blog.title}</h1>
-            <p className="text-gray-600 text-lg my-2">{blog.published_on}</p>
-            <div className="flex flex-wrap gap-1 mt-1 mb-8">
+            <i className="text-gray-400 text-lg my-4">{blog.published_on}</i>
+            <div className="flex flex-wrap gap-2 mt-1 mb-8">
                 {blog.tags.map((tag, index) => (
                     <Tag tag={tag} key={index} />
                 ))}
@@ -47,8 +47,8 @@ function Blog({ blog }: { blog: IBlog }) {
 
 function Tag({ tag }: { tag: string }) {
     return (
-        <span className="font-bold text-md bg-transparent border border-gray-400 px-3 py-1 rounded-lg text-gray-500">
-            #{tag}
+        <span className="font-bold text-md bg-transparent border-2 border-cyan-400 px-5 rounded-full py-1 text-cyan-400">
+            {tag}
         </span>
     );
 }

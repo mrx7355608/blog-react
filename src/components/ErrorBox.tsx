@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ErrorBox({ error }: { error: string }) {
     return (
         <div className="pt-12 w-full h-full flex items-center justify-start flex-col">

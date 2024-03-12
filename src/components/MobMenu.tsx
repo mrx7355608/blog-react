@@ -9,7 +9,7 @@ import {
 
 export default function MobMenu() {
     return (
-        <div className="drawer drawer-end z-40">
+        <div className="drawer drawer-end z-40 lg:hidden">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content"></div>
             <div className="drawer-side">

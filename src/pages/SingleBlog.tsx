@@ -10,17 +10,18 @@ import "prismjs/components/prism-java";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-c";
 import "prismjs/components/prism-cpp";
+import ErrorBox from "../components/ErrorBox";
 
 export const SingleBlog = () => {
     const { slug } = useParams();
     const { loading, error, response } = useAuthFetch<IBlog>(
-        `${import.meta.env.VITE_SERVER_URL}/api/blogs/${slug}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/blogs/${slug}`
     );
 
     return (
-        <div className="bg-black min-h-screen w-full py-12">
+        <div className="bg-black min-h-screen flex items-center justify-center w-full py-12">
             {loading && <Spinner />}
-            {error && <p className="text-red-700 font-bold text-lg">{error}</p>}
+            {error && <ErrorBox error={error} />}
             {response ? <Blog blog={response.data} /> : null}
         </div>
     );

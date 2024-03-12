@@ -34,7 +34,7 @@ export default function Navbar() {
 
             <label
                 htmlFor="my-drawer-4"
-                className="drawer-button btn btn-outline text-white bg-zinc-900 border-none"
+                className="lg:hidden drawer-button btn btn-outline text-white bg-zinc-900 border-none"
             >
                 <HiMenuAlt3 size={24} color="inherit" />
             </label>

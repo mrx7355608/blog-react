@@ -24,7 +24,7 @@ export const BlogCard = ({ blog }: { blog: IBlog }) => {
             <p className="text-gray-400 mt-4 mb-12 leading-6 font-normal">
                 {blog.summary}
             </p>
-            <button className="btn bg-transparent text-yellow-500 border-0 outline-0 w-24 ml-auto mb-5">
+            <button className="btn bg-transparent text-yellow-500 border-0 outline-0 w-24 ml-auto mb-5 hover:bg-transparent">
                 READ <FaArrowRight color="inherit" />
             </button>
             <hr className="border-gray-800" />

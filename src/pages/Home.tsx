@@ -6,11 +6,11 @@ import Searchbar from "../components/Searchbar";
 
 export const Home = () => {
     const { loading, error, response } = useAuthFetch<IBlog[]>(
-        "http://localhost:8000/api/blogs/published?page=1"
+        `${import.meta.env.VITE_SERVER_URL}/api/blogs/published?page=1`,
     );
     return (
         <div className="bg-black flex items-start justify-center py-12 px-12 w-full">
-            <div className="flex items-center justify-start flex-col mr-12 max-w-4xl">
+            <div className="flex items-center justify-start flex-col max-w-4xl">
                 {loading && <Spinner />}
                 {error && (
                     <p className="text-red-700 font-bold text-lg">{error}</p>

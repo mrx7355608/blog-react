@@ -4,7 +4,7 @@ import Tag from "./Tag";
 
 export const BlogCard = ({ blog }: { blog: IBlog }) => {
     return (
-        <div className="flex flex-col p-3 my-4">
+        <div className="flex flex-col p-3 my-4 w-full">
             <Link to={`/${blog.slug}`}>
                 <h1 className="text-3xl font-bold inline text-gray-100 hover:underline hover:text-red-800">
                     {blog.title}

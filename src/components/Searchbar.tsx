@@ -5,13 +5,14 @@ export default function Searchbar() {
         <form className="w-full relative">
             <input
                 type="text"
-                className="input input-bordered w-full bg-transparent input-success"
+                className="input h-10 text-sm font-medium w-full bg-zinc-900 rounded-full w-52"
+                placeholder="Search"
             />
             <button
                 type="submit"
-                className="btn btn-md btn-ghost absolute top-0 right-0 text-gray-500"
+                className="btn btn-sm btn-ghost absolute top-1 right-1 text-gray-500"
             >
-                <FaSearch size={14} color="#eee" />
+                <FaSearch size={12} color="gray" />
             </button>
         </form>
     );

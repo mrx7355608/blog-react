@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Spinner } from "../../components/Spinner";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
@@ -47,7 +46,7 @@ export const Login = () => {
                 className="btn btn-warning w-full max-w-md mt-4"
                 type="submit"
             >
-                {loading ? <Spinner /> : "Login"}
+                {loading ? <LoginLoading /> : "Login"}
             </button>
         </form>
     );
@@ -60,6 +59,7 @@ export const Login = () => {
     async function onSubmitHandler(e: React.ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
         setLoading(true);
+        setError("");
 
         // Make request to api
         try {
@@ -67,6 +67,7 @@ export const Login = () => {
             setLoading(false);
             navigateTo("/admin/dashboard");
         } catch (err) {
+            console.log((err as Error).message);
             setError((err as Error).message);
             setLoading(false);
         }
@@ -88,3 +89,7 @@ export const Login = () => {
         }
     }
 };
+
+function LoginLoading() {
+    return <span className="loading loading-spinner loading-md"></span>;
+}

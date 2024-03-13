@@ -5,7 +5,7 @@ import { BlogCard } from "../../components/BlogCard";
 
 export const DraftBlogs = () => {
     const { loading, error, response } = useAuthFetch<IBlog[]>(
-        "http://localhost:8000/api/blogs/un-published"
+        `${import.meta.env.VITE_SERVER_URL}/api/blogs/un-published`,
     );
 
     return (

@@ -74,7 +74,7 @@ export const Login = () => {
     }
 
     async function login() {
-        const url = "http://localhost:8000/api/auth/login";
+        const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/login`;
         const response = await fetch(url, {
             method: "POST",
             credentials: "include",

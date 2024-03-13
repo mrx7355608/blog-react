@@ -15,11 +15,11 @@ import ErrorBox from "../components/ErrorBox";
 export const SingleBlog = () => {
     const { slug } = useParams();
     const { loading, error, response } = useAuthFetch<IBlog>(
-        `${import.meta.env.VITE_SERVER_URL}/api/blogs/${slug}`
+        `${import.meta.env.VITE_SERVER_URL}/api/blogs/${slug}`,
     );
 
     return (
-        <div className="bg-black min-h-screen flex items-center justify-center w-full py-12">
+        <div className="bg-black min-h-screen flex justify-center w-full py-12">
             {loading && <Spinner />}
             {error && <ErrorBox error={error} />}
             {response ? <Blog blog={response.data} /> : null}
@@ -34,9 +34,11 @@ function Blog({ blog }: { blog: IBlog }) {
 
     return (
         <div className="w-full px-11 lg:px-0 lg:w-2/3 mx-auto">
-            <h1 className="text-4xl font-black">{blog.title}</h1>
-            <i className="text-gray-400 text-lg my-4">{blog.published_on}</i>
-            <div className="flex flex-wrap gap-2 mt-1 mb-8">
+            <h1 className="text-4xl font-black mb-1 text-white">
+                {blog.title}
+            </h1>
+            <i className="text-gray-400 text-lg">{blog.published_on}</i>
+            <div className="flex flex-wrap gap-2 mt-2 mb-10">
                 {blog.tags.map((tag, index) => (
                     <Tag tag={tag} key={index} />
                 ))}

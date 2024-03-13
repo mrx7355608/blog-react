@@ -128,7 +128,7 @@ export const CreateBlog = () => {
         const data = createBlogDataObject();
 
         // Make api call to create blog
-        fetch("http://localhost:8000/api/blogs", {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/api/blogs`, {
             method: "POST",
             credentials: "include",
             headers: {

@@ -9,7 +9,7 @@ export const Dashboard = () => {
     const [logoutLoading, setLogoutLoading] = useState(false);
     const navTo = useNavigate();
     const { loading, error, response } = useAuthFetch<IBlog[]>(
-        "http://localhost:8000/api/blogs"
+        `${import.meta.env.VITE_SERVER_URL}/api/blogs`,
     );
 
     return (

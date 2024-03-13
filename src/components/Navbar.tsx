@@ -7,14 +7,16 @@ import MobMenu from "./MobMenu";
 export default function Navbar() {
     return (
         <div className="flex justify-between lg:justify-around items-center p-6 px-12 shadow bg-black w-full">
-            <div className="flex items-center ml-5">
-                <h1 className="inline text-3xl font-black text-pink-700">
-                    Mr.X
-                </h1>
-                <span className="ml-3 px-3 py-2 font-medium rounded-lg bg-pink-700 text-white">
-                    BLOG
-                </span>
-            </div>
+            <Link to="/">
+                <div className="flex items-center ml-5">
+                    <h1 className="inline text-3xl font-black text-pink-700">
+                        Mr.X
+                    </h1>
+                    <span className="ml-3 px-3 py-2 font-medium rounded-lg bg-pink-700 text-black">
+                        BLOG
+                    </span>
+                </div>
+            </Link>
             <MobMenu />
             <div className="hidden lg:flex items-center gap-6 text-white mr-4">
                 <Link to="" target="_blank">

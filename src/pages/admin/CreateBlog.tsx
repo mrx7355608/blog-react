@@ -55,6 +55,7 @@ export const CreateBlog = () => {
                         "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
                     toolbar:
                         "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
+                    content_css: "/tinymce_darktheme.css",
                 }}
                 initialValue="Write your blog here"
             />

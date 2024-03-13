@@ -15,7 +15,7 @@ export const Dashboard = () => {
     return (
         <div className="flex items-start w-full flex-col gap-3 p-6">
             <div className="flex justify-between items-center w-full mb-8">
-                <h1 className="text-4xl font-bold inline">Blogs</h1>
+                <h1 className="text-4xl font-bold inline text-white">Blogs</h1>
                 <button onClick={logout} className="btn btn-error text-white">
                     {logoutLoading ? <Spinner /> : "Logout"}
                 </button>

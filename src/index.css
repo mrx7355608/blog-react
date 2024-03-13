@@ -7,12 +7,16 @@
         h1,h2,h3,h4,h5,h6{
             font-size: revert;
             font-weight: revert;
-            color: revert;
+            color: white;
+        }
+
+        p, span {
+            color: lightgray;
         }
 
         a {
             font-size: revert;
-            color: revert;
+            color: skyblue;
             text-decoration: revert;
         }
 

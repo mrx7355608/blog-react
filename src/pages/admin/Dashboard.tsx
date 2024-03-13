@@ -1,16 +1,12 @@
 import { Spinner } from "../../components/Spinner";
-import useAuthFetch from "../../hooks/useAuthFetch";
-import { BlogCard } from "../../components/BlogCard";
-import { IBlog } from "../../types/blog";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BlogCard } from "../../components/BlogCard";
+import InfiniteScroll from "../../components/InfiniteScroll";
 
 export const Dashboard = () => {
     const [logoutLoading, setLogoutLoading] = useState(false);
     const navTo = useNavigate();
-    const { loading, error, response } = useAuthFetch<IBlog[]>(
-        `${import.meta.env.VITE_SERVER_URL}/api/blogs`,
-    );
 
     return (
         <div className="flex items-start w-full flex-col gap-3 p-6">
@@ -20,12 +16,7 @@ export const Dashboard = () => {
                     {logoutLoading ? <Spinner /> : "Logout"}
                 </button>
             </div>
-            {loading && <Spinner />}
-            {error && <p className="text-red-700 font-bold text-lg">{error}</p>}
-            {response &&
-                response.data.map((blog: IBlog) => {
-                    return <BlogCard blog={blog} />;
-                })}
+            <InfiniteScroll endpoint="/api/blogs" Card={BlogCard} />
         </div>
     );
 

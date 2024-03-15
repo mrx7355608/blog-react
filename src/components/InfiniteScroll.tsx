@@ -19,7 +19,7 @@ export default function InfiniteScroll({
     const [page, setPage] = useState(1);
     const [blogs, setBlogs] = useState<blog.IBlog[]>([]);
     const { error, response } = useAuthFetch<blog.IBlog[]>(
-        `${serverUrl}${endpoint}?page=${page}`,
+        `${serverUrl}${endpoint}?page=${page}`
     );
 
     useEffect(() => {
@@ -41,14 +41,10 @@ export default function InfiniteScroll({
                     hasMore={hasMore}
                     next={() => setPage(page + 1)}
                     loader={<Spinner />}
-                    endMessage={
-                        <h3 className="text-lg text-center text-gray-400">
-                            Ended
-                        </h3>
-                    }
+                    endMessage={<h3></h3>}
                 >
                     {blogs.map((blog: blog.IBlog) => {
-                        return <Card blog={blog} />;
+                        return <Card key={blog._id} blog={blog} />;
                     })}
                 </InfiniteScrollComponent>
             )}

@@ -36,20 +36,35 @@ export default function ToastProvider({ children }: { children: ReactNode }) {
     );
 
     function showSuccessToast(message: string) {
+        closeToast();
         setToast({
             isVisible: true,
             isSuccess: true,
             isError: false,
             message: message,
         });
+        closeToast();
     }
 
     function showErrorToast(message: string) {
+        closeToast();
         setToast({
             isVisible: true,
             isSuccess: false,
             isError: true,
             message: message,
         });
+        closeToast();
+    }
+
+    function closeToast() {
+        setTimeout(() => {
+            setToast({
+                isVisible: false,
+                isSuccess: false,
+                isError: false,
+                message: "",
+            });
+        }, 4000);
     }
 }

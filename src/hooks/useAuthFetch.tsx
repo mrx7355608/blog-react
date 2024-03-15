@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-
-interface IApiResponse<T> {
-    ok: boolean;
-    data: T;
-    error?: string;
-}
+import { IApiResponse } from "../types/api";
 
 export default function useAuthFetch<T>(url: string) {
     const [loading, setLoading] = useState<boolean>(true);

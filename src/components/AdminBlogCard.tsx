@@ -2,10 +2,17 @@ import { Link } from "react-router-dom";
 import { IBlog } from "../types/blog";
 import Tag from "./Tag";
 import { IApiResponse } from "../types/api";
-import useToast from "../hooks/useToast";
+import { useToast } from "../context/toast";
+import { useState } from "react";
 
 export default function AdminBlogCard({ blog }: { blog: IBlog }) {
     const { showErrorToast, showSuccessToast } = useToast();
+    const [loading, setLoading] = useState({
+        isDeleting: false,
+        isPublishing: false,
+        isUnpublishing: false,
+    });
+
     return (
         <div className="flex flex-col p-3 my-4 w-full">
             <Link to={`/${blog.slug}`}>
@@ -55,20 +62,8 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
 
     function publishBlog() {}
     function unpublishBlog() {
-        const serverUrl = `${
-            import.meta.env.VITE_SERVER_URL
-        }/api/blogs/un-publish/${blog._id}`;
-        fetch(serverUrl)
-            .then((resp) => resp.json())
-            .then((apiResponse: IApiResponse<string>) => {
-                if (apiResponse.error) {
-                    showErrorToast(apiResponse.error);
-                } else {
-                    showSuccessToast("Blog un-published successfully");
-                }
-            })
-            .catch((err) => showErrorToast(err.message))
-            .finally(() => setUnPublishLoading(false));
+        const serverURL = import.meta.env.VITE_SERVER_URL;
+        const url = `${serverURL}/api/blogs/un-publish/${blog._id}`;
     }
 
     function editBlog() {}

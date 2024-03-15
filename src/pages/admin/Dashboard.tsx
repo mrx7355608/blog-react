@@ -1,8 +1,8 @@
 import { Spinner } from "../../components/Spinner";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BlogCard } from "../../components/BlogCard";
 import InfiniteScroll from "../../components/InfiniteScroll";
+import AdminBlogCard from "../../components/AdminBlogCard";
 
 export const Dashboard = () => {
     const [logoutLoading, setLogoutLoading] = useState(false);
@@ -16,7 +16,7 @@ export const Dashboard = () => {
                     {logoutLoading ? <Spinner /> : "Logout"}
                 </button>
             </div>
-            <InfiniteScroll endpoint="/api/blogs" Card={BlogCard} />
+            <InfiniteScroll endpoint="/api/blogs" Card={AdminBlogCard} />
         </div>
     );
 

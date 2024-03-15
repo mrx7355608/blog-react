@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { IBlog } from "../types/blog";
 import Tag from "./Tag";
 import { IApiResponse } from "../types/api";
+import useToast from "../hooks/useToast";
 
 export default function AdminBlogCard({ blog }: { blog: IBlog }) {
+    const { showErrorToast, showSuccessToast } = useToast();
     return (
         <div className="flex flex-col p-3 my-4 w-full">
             <Link to={`/${blog.slug}`}>

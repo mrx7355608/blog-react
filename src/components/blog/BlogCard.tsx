@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IBlog } from "../types/blog";
+import { IBlog } from "../../types/blog";
 import Tag from "./Tag";
 import { FaArrowRight } from "react-icons/fa";
 

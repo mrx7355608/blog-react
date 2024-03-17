@@ -1,7 +1,7 @@
 import { Editor } from "@tinymce/tinymce-react";
 import { useRef, useState } from "react";
-import { Spinner } from "../../components/Spinner";
-import { SuccessAlert } from "../../components/SuccessAlert";
+import { Spinner } from "../../components/main/Spinner";
+import { SuccessAlert } from "../../components/admin/SuccessAlert";
 
 interface IBlogInputData {
     title: string;
@@ -106,7 +106,7 @@ export const CreateBlog = () => {
     function handleChange(
         e: React.ChangeEvent<
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-        >,
+        >
     ) {
         const { name, value } = e.target;
         setBlogData({ ...blogData, [name]: value });

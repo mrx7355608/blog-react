@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { IBlog } from "../types/blog";
-import Tag from "./Tag";
-import { IApiResponse } from "../types/api";
-import { useToast } from "../context/toast";
+import { IBlog } from "../../types/blog";
+import Tag from "../blog/Tag";
+import { IApiResponse } from "../../types/api";
+import { useToast } from "../../context/toast";
 import { useState } from "react";
 
 export default function AdminBlogCard({ blog }: { blog: IBlog }) {

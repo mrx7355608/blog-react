@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import useAuthFetch from "../hooks/useAuthFetch";
-import * as blog from "../types/blog";
-import { Spinner } from "./Spinner";
+import useAuthFetch from "../../hooks/useAuthFetch";
+import * as blog from "../../types/blog";
+import { Spinner } from "../main/Spinner";
 import InfiniteScrollComponent from "react-infinite-scroll-component";
 
 interface IInfiniteScrollProps {

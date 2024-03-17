@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout";
 import { AdminLayout } from "./layouts/AdminLayout";
-import { Home } from "./pages/Home";
-import { SingleBlog } from "./pages";
+import { Home } from "./pages/blogs/Home";
+import { SingleBlog } from "./pages/blogs";
 import {
     CreateBlog,
     Dashboard,

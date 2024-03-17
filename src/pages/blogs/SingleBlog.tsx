@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import useAuthFetch from "../hooks/useAuthFetch";
-import { IBlog } from "../types/blog";
-import { Spinner } from "../components/Spinner";
+import useAuthFetch from "../../hooks/useAuthFetch";
+import { IBlog } from "../../types/blog";
+import { Spinner } from "../../components/main/Spinner";
 import ReactHtmlParser from "react-html-parser";
 import { useEffect } from "react";
 import Prism from "prismjs";
@@ -10,12 +10,12 @@ import "prismjs/components/prism-java";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-c";
 import "prismjs/components/prism-cpp";
-import ErrorBox from "../components/ErrorBox";
+import ErrorBox from "../../components/blog/ErrorBox";
 
 export const SingleBlog = () => {
     const { slug } = useParams();
     const { loading, error, response } = useAuthFetch<IBlog>(
-        `${import.meta.env.VITE_SERVER_URL}/api/blogs/${slug}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/blogs/${slug}`
     );
 
     return (

@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
-import { AdminSidebar } from "../components/AdminSidebar";
+import { AdminSidebar } from "../components/admin/AdminSidebar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "../components/Spinner";
-import InternalServerError from "../components/InternalServerError";
+import { Spinner } from "../components/main/Spinner";
+import InternalServerError from "../components/main/InternalServerError";
 
 export const AdminLayout = () => {
     const navTo = useNavigate();
     const [loading, setLoading] = useState(true);
+    // eslint-disable-next-line
     const [showInternalError, setShowInternalError] = useState(false);
 
     useEffect(() => {

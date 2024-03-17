@@ -1,8 +1,8 @@
-import { Spinner } from "../../components/Spinner";
+import { Spinner } from "../../components/main/Spinner";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InfiniteScroll from "../../components/InfiniteScroll";
-import AdminBlogCard from "../../components/AdminBlogCard";
+import InfiniteScroll from "../../components/blog/InfiniteScroll";
+import AdminBlogCard from "../../components/admin/AdminBlogCard";
 
 export const Dashboard = () => {
     const [logoutLoading, setLogoutLoading] = useState(false);

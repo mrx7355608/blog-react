@@ -1,5 +1,5 @@
-import { BlogCard } from "../../components/BlogCard";
-import InfiniteScroll from "../../components/InfiniteScroll";
+import { BlogCard } from "../../components/blog/BlogCard";
+import InfiniteScroll from "../../components/blog/InfiniteScroll";
 
 export const PublishedBlogs = () => {
     return (

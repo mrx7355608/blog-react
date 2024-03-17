@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ReactNode, createContext, useContext, useState } from "react";
-import SuccessToast from "../components/SuccessToast";
-import ErrorToast from "../components/ErrorToast";
+import SuccessToast from "../components/Toast/SuccessToast";
+import ErrorToast from "../components/Toast/ErrorToast";
 
 interface IToastContext {
     showSuccessToast: (message: string) => void;

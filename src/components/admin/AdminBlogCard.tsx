@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IBlog } from "../../types/blog";
 import Tag from "../blog/Tag";
 import { IApiResponse } from "../../types/api";
@@ -6,6 +6,7 @@ import { useToast } from "../../context/toast";
 import { useState } from "react";
 
 export default function AdminBlogCard({ blog }: { blog: IBlog }) {
+    const navTo = useNavigate();
     const { showErrorToast, showSuccessToast } = useToast();
     const [isDoubleCheck, setDoubleCheck] = useState(false);
     const [loading, setLoading] = useState({
@@ -127,7 +128,9 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
         }
     }
 
-    function editBlog() {}
+    function editBlog() {
+        navTo(`/admin/edit/${blog._id}`);
+    }
 
     async function deleteBlog() {
         setLoading((prev) => ({ ...prev, isDeleting: true }));

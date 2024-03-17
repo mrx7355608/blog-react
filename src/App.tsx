@@ -10,6 +10,7 @@ import {
     PublishedBlogs,
     Login,
 } from "./pages/admin";
+import { EditBlog } from "./pages/admin/EditBlog";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: "create-blog",
                 element: <CreateBlog />,
+            },
+            {
+                path: "edit/:id",
+                element: <EditBlog />,
             },
         ],
     },

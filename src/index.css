@@ -33,6 +33,8 @@
             font-size: revert;
             margin: revert;
             font-weight: revert;
+            border: revert;
+            border-color: revert;
         }
 
         pre {

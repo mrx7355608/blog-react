@@ -11,7 +11,8 @@
         }
 
         p, span {
-            color: lightgray;
+            color: #a1a1a1;
+            font-weight: 400;
         }
 
         a {
@@ -32,6 +33,13 @@
             font-size: revert;
             margin: revert;
             font-weight: revert;
+        }
+
+        pre {
+            border-radius: 10px;
+            margin: 1rem 0;
+            padding: 30px;
+            background-color: #1b1b1b
         }
     }
 }

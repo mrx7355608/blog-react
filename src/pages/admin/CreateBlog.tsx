@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { Spinner } from "../../components/main/Spinner";
 import { SuccessAlert } from "../../components/admin/SuccessAlert";
 import { IBlogInputData } from "../../types/blog";
+import { createBlog, createBlogDataObject } from "../../services/blog.services";
 
 export default function CreateBlog() {
     const editorRef = useRef<Editor | null>(null);
@@ -88,7 +89,7 @@ export default function CreateBlog() {
             ) : null}
 
             {/* Create blog button */}
-            <button onClick={createBlog} className="mt-8 btn btn-info w-full">
+            <button onClick={create} className="mt-8 btn btn-info w-full">
                 {loading ? <Spinner /> : "Create blog"}
             </button>
         </div>
@@ -103,43 +104,18 @@ export default function CreateBlog() {
         setBlogData({ ...blogData, [name]: value });
     }
 
-    function createBlogDataObject() {
+    async function create() {
         setLoading(true);
-        const blogContent = editorRef.current?.editor?.getContent() || "";
-
-        const data = {
-            ...blogData,
-            content: blogContent,
-            is_published: blogData.is_published === "draft" ? false : true,
-            tags: blogData.tags.split(","),
-        };
-        return data;
-    }
-
-    async function createBlog() {
-        // Create an object containing blog data
-        const data = createBlogDataObject();
-
-        // Setup url and options
-        const url = `${import.meta.env.VITE_SERVER_URL}/api/blogs`;
-        const options: RequestInit = {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-type": "application/json",
-            },
-            body: JSON.stringify(data),
-        };
-
-        // Make api call to create blog
         try {
-            setLoading(true);
-            const response = await fetch(url, options);
-            const result = await response.json();
-            setError(result.error ? result.error : ""); // set error if there is any
-            setSuccessMessage("Blog has been published!");
+            const blogContent = editorRef.current?.editor?.getContent() || "";
+            const data = createBlogDataObject(blogContent, blogData);
+            const result = await createBlog(data);
+            if (result.error) {
+                return setError(result.error);
+            }
+            setSuccessMessage("Blog created");
         } catch (err) {
-            setError((err as Error).message);
+            return setError((err as Error).message);
         } finally {
             setLoading(false);
         }

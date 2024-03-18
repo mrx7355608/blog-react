@@ -18,7 +18,7 @@ export default function InfiniteScroll({
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
     const [blogs, setBlogs] = useState<blog.IBlog[]>([]);
-    const { error, response } = useAuthFetch<blog.IBlog[]>(
+    const { error, loading, response } = useAuthFetch<blog.IBlog[]>(
         `${serverUrl}${endpoint}?page=${page}`
     );
 
@@ -35,6 +35,7 @@ export default function InfiniteScroll({
 
     return (
         <div className="w-full">
+            {loading && <Spinner />}
             {response && (
                 <InfiniteScrollComponent
                     dataLength={response?.data.length as number}

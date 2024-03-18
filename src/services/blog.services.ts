@@ -34,7 +34,28 @@ export async function createBlog(
     return result;
 }
 
-export async function editBlog() {}
+export async function editBlog(
+    blogID: string,
+    data: IBlogInputData
+): Promise<string | null> {
+    const serverURL = import.meta.env.VITE_SERVER_URL;
+    const url = `${serverURL}/api/blogs/${blogID}`;
+    const options: RequestInit = {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    };
+    const response = await fetch(url, options);
+    const result: IApiResponse<IBlog> = await response.json();
+    if (result.error) {
+        return result.error;
+    }
+
+    return null;
+}
 
 export async function deleteBlog(blogID: string): Promise<string | null> {
     const serverURL = import.meta.env.VITE_SERVER_URL;

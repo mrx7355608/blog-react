@@ -13,7 +13,7 @@ const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const DraftBlogs = lazy(() => import("./pages/admin/DraftBlogs"));
 const Login = lazy(() => import("./pages/admin/Login"));
 const PublishedBlogs = lazy(() => import("./pages/admin/PublishedBlogs"));
-// const EditBlog = lazy(() => import("./pages/admin/EditBlog"));
+const EditBlog = lazy(() => import("./pages/admin/EditBlog"));
 
 const router = createBrowserRouter([
     {
@@ -50,10 +50,10 @@ const router = createBrowserRouter([
                 path: "create-blog",
                 element: <CreateBlog />,
             },
-            // {
-            //     path: "edit/:id",
-            //     element: <EditBlog />,
-            // },
+            {
+                path: "edit/:id",
+                element: <EditBlog />,
+            },
         ],
     },
     {

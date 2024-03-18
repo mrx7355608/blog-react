@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Outlet } from "react-router-dom";
 import { AdminSidebar } from "../components/admin/AdminSidebar";
 import { useEffect, useState, Suspense } from "react";
@@ -5,27 +6,26 @@ import { useNavigate } from "react-router-dom";
 import { Spinner } from "../components/main/Spinner";
 import InternalServerError from "../components/main/InternalServerError";
 import ToastProvider from "../context/toast";
+import { getAdmin } from "../services/admin.services";
 
 export const AdminLayout = () => {
     const navTo = useNavigate();
     const [loading, setLoading] = useState(true);
-    // eslint-disable-next-line
     const [showInternalError, setShowInternalError] = useState(false);
 
     useEffect(() => {
-        // Check if admin is logged in by making request
-        // to <server-url>/api/user to fetch data
-        // If response is ok, continue else return user to blog home page
-        fetch("http://localhost:8000/api/user", {
-            method: "GET",
-            credentials: "include",
-        })
-            .then((resp) => {
-                if (!resp.ok) {
-                    navTo("/");
-                }
-            })
-            .finally(() => setLoading(false));
+        const isAdminLoggedIn = async () => {
+            // getAdmin() will return admin data if he is logged in (result.ok == true)
+            // otherwise result.ok will be false
+            const result = await getAdmin();
+
+            setLoading(false);
+            if (!result.ok) {
+                return navTo("/");
+            }
+        };
+
+        isAdminLoggedIn();
     }, [navTo]);
 
     if (loading) {

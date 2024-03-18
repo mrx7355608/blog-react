@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginAdmin } from "../../services/admin.services";
 
 export default function Login() {
     const navigateTo = useNavigate();
@@ -63,29 +64,15 @@ export default function Login() {
 
         // Make request to api
         try {
-            await login();
-            setLoading(false);
+            const result = await loginAdmin(creds);
+            if (result.error) {
+                return setError(result.error);
+            }
             navigateTo("/admin/dashboard");
         } catch (err) {
-            console.log((err as Error).message);
             setError((err as Error).message);
+        } finally {
             setLoading(false);
-        }
-    }
-
-    async function login() {
-        const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/login`;
-        const response = await fetch(url, {
-            method: "POST",
-            credentials: "include",
-            body: JSON.stringify(creds),
-            headers: {
-                "Content-type": "application/json",
-            },
-        });
-        const result = await response.json();
-        if (result.ok === false) {
-            throw new Error(result.error);
         }
     }
 }

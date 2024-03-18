@@ -1,7 +1,7 @@
 import { BlogCard } from "../../components/blog/BlogCard";
 import InfiniteScroll from "../../components/blog/InfiniteScroll";
 
-export const DraftBlogs = () => {
+export default function DraftBlogs() {
     return (
         <div className="flex items-start w-full flex-col gap-3 p-6">
             <InfiniteScroll
@@ -10,4 +10,4 @@ export const DraftBlogs = () => {
             />
         </div>
     );
-};
+}

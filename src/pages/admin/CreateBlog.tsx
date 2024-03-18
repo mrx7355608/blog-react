@@ -17,7 +17,7 @@ interface IBlogData {
     is_published: boolean;
 }
 
-export const CreateBlog = () => {
+export default function CreateBlog() {
     const editorRef = useRef<Editor | null>(null);
     const [blogData, setBlogData] = useState<IBlogInputData>({
         title: "",
@@ -148,4 +148,4 @@ export const CreateBlog = () => {
             .catch(() => setError("Something went wrong!"))
             .finally(() => setLoading(false));
     }
-};
+}

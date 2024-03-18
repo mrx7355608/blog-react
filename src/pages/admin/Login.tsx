@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export default function Login() {
     const navigateTo = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -88,7 +88,7 @@ export const Login = () => {
             throw new Error(result.error);
         }
     }
-};
+}
 
 function LoginLoading() {
     return <span className="loading loading-spinner loading-md"></span>;

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import InfiniteScroll from "../../components/blog/InfiniteScroll";
 import AdminBlogCard from "../../components/admin/AdminBlogCard";
 
-export const Dashboard = () => {
+export default function Dashboard() {
     const [logoutLoading, setLogoutLoading] = useState(false);
     const navTo = useNavigate();
 
@@ -34,4 +34,4 @@ export const Dashboard = () => {
             .catch((err) => alert(err.message))
             .finally(() => setLogoutLoading(false));
     }
-};
+}

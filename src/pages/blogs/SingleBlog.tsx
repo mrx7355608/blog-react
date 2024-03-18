@@ -12,7 +12,7 @@ import "prismjs/components/prism-c";
 import "prismjs/components/prism-cpp";
 import ErrorBox from "../../components/blog/ErrorBox";
 
-export const SingleBlog = () => {
+export default function SingleBlog() {
     const { slug } = useParams();
     const { loading, error, response } = useAuthFetch<IBlog>(
         `${import.meta.env.VITE_SERVER_URL}/api/blogs/${slug}`
@@ -25,7 +25,7 @@ export const SingleBlog = () => {
             {response ? <Blog blog={response.data} /> : null}
         </div>
     );
-};
+}
 
 function Blog({ blog }: { blog: IBlog }) {
     useEffect(() => {

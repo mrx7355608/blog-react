@@ -5,7 +5,7 @@ import { IBlog } from "../../types/blog";
 import { Spinner } from "../../components/main/Spinner";
 import ErrorBox from "../../components/blog/ErrorBox";
 
-export const EditBlog = () => {
+export default function EditBlog() {
     // Get blog id from params
     const { id } = useParams();
 
@@ -103,4 +103,4 @@ export const EditBlog = () => {
         const { name, value } = e.target;
         setBlogData({ ...blogData, [name]: value });
     }
-};
+}

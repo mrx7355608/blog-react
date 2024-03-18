@@ -16,3 +16,11 @@ export interface IBlogInputData {
     summary: string;
     is_published: string;
 }
+
+export interface IApiBlogData {
+    title: string;
+    content: string;
+    summary: string;
+    is_published: boolean;
+    tags: string[];
+}

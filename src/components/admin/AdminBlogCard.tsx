@@ -1,9 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IBlog } from "../../types/blog";
 import Tag from "../blog/Tag";
-import { IApiResponse } from "../../types/api";
 import { useToast } from "../../context/toast";
 import { useState } from "react";
+import {
+    deleteBlog,
+    publishBlog,
+    unPublishBlog,
+} from "../../services/blog.services";
+
+type ServiceFunc = (blogID: string) => Promise<string | null>;
 
 export default function AdminBlogCard({ blog }: { blog: IBlog }) {
     const navTo = useNavigate();
@@ -14,6 +20,22 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
         isPublishing: false,
         isUnpublishing: false,
     });
+
+    const publish = wrapper(
+        publishBlog,
+        "isPublishing",
+        "Published successfully"
+    );
+    const unPublish = wrapper(
+        unPublishBlog,
+        "isUnpublishing",
+        "Un-published successfully"
+    );
+    const removeBlog = wrapper(
+        deleteBlog,
+        "isDeleting",
+        "Deleted successfully"
+    );
 
     return (
         <div className="flex flex-col p-3 my-4 w-full">
@@ -39,19 +61,19 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
             <div className="flex flex-wrap gap-2 items-center w-full p-3">
                 <button
                     className="btn btn-ghost bg-zinc-900 flex-1"
-                    onClick={publishBlog}
+                    onClick={publish}
                 >
                     {loading.isPublishing ? <Spinner /> : "Publish"}
                 </button>
                 <button
                     className="btn btn-ghost bg-zinc-900 flex-1"
-                    onClick={unpublishBlog}
+                    onClick={unPublish}
                 >
                     {loading.isUnpublishing ? <Spinner /> : "Un-publish"}
                 </button>
                 <button
                     className="btn btn-ghost bg-zinc-900 flex-1"
-                    onClick={editBlog}
+                    onClick={() => navTo(`/admin/edit/${blog._id}`)}
                 >
                     Edit
                 </button>
@@ -68,7 +90,7 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
                 ) : (
                     <button
                         className="btn btn-error flex-1"
-                        onClick={deleteBlog}
+                        onClick={removeBlog}
                     >
                         {loading.isDeleting ? (
                             <Spinner />
@@ -82,80 +104,35 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
         </div>
     );
 
-    async function publishBlog() {
-        setLoading((prev) => ({ ...prev, isPublishing: true }));
-        const serverURL = import.meta.env.VITE_SERVER_URL;
-        const url = `${serverURL}/api/blogs/publish/${blog._id}`;
-        const options: RequestInit = {
-            method: "PATCH",
-            credentials: "include",
-        };
-
-        try {
-            const response = await fetch(url, options);
-            const result: IApiResponse<IBlog> = await response.json();
-            if (result.error) {
-                throw new Error(result.error);
-            }
-            showSuccessToast("Blog published successfully");
-        } catch (err: unknown) {
-            showErrorToast((err as Error).message);
-        } finally {
-            setLoading((prev) => ({ ...prev, isPublishing: false }));
-        }
-    }
-
-    async function unpublishBlog() {
-        setLoading((prev) => ({ ...prev, isUnpublishing: true }));
-        const serverURL = import.meta.env.VITE_SERVER_URL;
-        const url = `${serverURL}/api/blogs/un-publish/${blog._id}`;
-        const options: RequestInit = {
-            method: "PATCH",
-            credentials: "include",
-        };
-
-        try {
-            const response = await fetch(url, options);
-            const result: IApiResponse<IBlog> = await response.json();
-            if (result.error) {
-                throw new Error(result.error);
-            }
-            showSuccessToast("Blog un-published successfully");
-        } catch (err: unknown) {
-            showErrorToast((err as Error).message);
-        } finally {
-            setLoading((prev) => ({ ...prev, isUnpublishing: false }));
-        }
-    }
-
-    function editBlog() {
-        navTo(`/admin/edit/${blog._id}`);
-    }
-
-    async function deleteBlog() {
-        setLoading((prev) => ({ ...prev, isDeleting: true }));
-        const serverURL = import.meta.env.VITE_SERVER_URL;
-        const url = `${serverURL}/api/blogs/${blog._id}`;
-        const options: RequestInit = {
-            method: "DELETE",
-            credentials: "include",
-        };
-
-        try {
-            const response = await fetch(url, options);
-
-            if (!response.ok) {
-                const result: IApiResponse<IBlog> = await response.json();
-                if (result.error) {
-                    throw new Error(result.error);
+    /* 
+        A wrapper that returns a function which calls 
+        the service in a try / catch block and show 
+        success & error toasts based on how the operation went
+        and also toggles loading states
+    */
+    function wrapper(
+        serviceFunc: ServiceFunc,
+        loadingStateField: string,
+        successMessage: string
+    ) {
+        return async function () {
+            try {
+                setLoading((prev) => ({ ...prev, [loadingStateField]: true }));
+                // Call service func that returns null on success
+                // and an error message on failure
+                const error = await serviceFunc(blog._id);
+                if (error) {
+                    throw new Error(error);
                 }
+
+                // Show a success response
+                showSuccessToast(successMessage);
+            } catch (err: unknown) {
+                showErrorToast((err as Error).message);
+            } finally {
+                setLoading((prev) => ({ ...prev, [loadingStateField]: false }));
             }
-            showSuccessToast("Blog deleted successfully");
-        } catch (err: unknown) {
-            showErrorToast((err as Error).message);
-        } finally {
-            setLoading((prev) => ({ ...prev, isDeleting: false }));
-        }
+        };
     }
 }
 

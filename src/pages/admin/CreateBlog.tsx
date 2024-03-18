@@ -2,20 +2,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useRef, useState } from "react";
 import { Spinner } from "../../components/main/Spinner";
 import { SuccessAlert } from "../../components/admin/SuccessAlert";
-
-interface IBlogInputData {
-    title: string;
-    content: string;
-    tags: string;
-    summary: string;
-    is_published: string;
-}
-interface IBlogData {
-    title: string;
-    content: string;
-    tags: string[];
-    is_published: boolean;
-}
+import { IBlogInputData } from "../../types/blog";
 
 export default function CreateBlog() {
     const editorRef = useRef<Editor | null>(null);
@@ -32,12 +19,15 @@ export default function CreateBlog() {
 
     return (
         <div className="py-8">
+            {/* Show a success alert message if blog is successfully created */}
             {successMessage.length > 0 && (
                 <SuccessAlert message={successMessage} />
             )}
+
+            {/* Page heading */}
             <h1 className="font-bold text-4xl mb-5">Create Blog</h1>
 
-            {/* Blog title input */}
+            {/* Title input */}
             <input
                 onChange={handleChange}
                 className="input input-bordered input-lg mb-3 w-full"
@@ -46,7 +36,7 @@ export default function CreateBlog() {
                 placeholder="Title"
             />
 
-            {/* Blog content */}
+            {/* Tinymce editor */}
             <Editor
                 ref={editorRef}
                 apiKey={import.meta.env.VITE_TINYMCE_APIKEY}
@@ -59,7 +49,8 @@ export default function CreateBlog() {
                 }}
                 initialValue="Write your blog here"
             />
-            {/* Blog tags input box */}
+
+            {/* Tags input */}
             <p className="mt-8 mb-2 text-lg mt-8">Tags</p>
             <input
                 className="input input-bordered w-full"
@@ -68,7 +59,7 @@ export default function CreateBlog() {
                 placeholder="Add tags (separated by comma)"
             />
 
-            {/* Blog summary input box */}
+            {/* Summary input */}
             <p className="mt-8 mb-2 text-lg mt-8">Summary</p>
             <textarea
                 className="input input-bordered w-full"
@@ -77,7 +68,7 @@ export default function CreateBlog() {
                 placeholder="Write brief and concise blog summary"
             ></textarea>
 
-            {/* Select publishing status */}
+            {/* Publishing status */}
             <p className="mt-8 mb-2 text-lg">Select publishing status</p>
             <select
                 className="select select-bordered w-full max-w-xs"
@@ -116,7 +107,7 @@ export default function CreateBlog() {
         setLoading(true);
         const blogContent = editorRef.current?.editor?.getContent() || "";
 
-        const data: IBlogData = {
+        const data = {
             ...blogData,
             content: blogContent,
             is_published: blogData.is_published === "draft" ? false : true,
@@ -126,26 +117,31 @@ export default function CreateBlog() {
     }
 
     async function createBlog() {
+        // Create an object containing blog data
         const data = createBlogDataObject();
 
-        // Make api call to create blog
-        fetch(`${import.meta.env.VITE_SERVER_URL}/api/blogs`, {
+        // Setup url and options
+        const url = `${import.meta.env.VITE_SERVER_URL}/api/blogs`;
+        const options: RequestInit = {
             method: "POST",
             credentials: "include",
             headers: {
                 "Content-type": "application/json",
             },
             body: JSON.stringify(data),
-        })
-            .then((resp) => resp.json())
-            .then((data) => {
-                if (data.error) {
-                    setError(data.error);
-                } else {
-                    setSuccessMessage("Blog has been published!");
-                }
-            })
-            .catch(() => setError("Something went wrong!"))
-            .finally(() => setLoading(false));
+        };
+
+        // Make api call to create blog
+        try {
+            setLoading(true);
+            const response = await fetch(url, options);
+            const result = await response.json();
+            setError(result.error ? result.error : ""); // set error if there is any
+            setSuccessMessage("Blog has been published!");
+        } catch (err) {
+            setError((err as Error).message);
+        } finally {
+            setLoading(false);
+        }
     }
 }

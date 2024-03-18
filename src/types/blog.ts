@@ -8,3 +8,11 @@ export interface IBlog {
     is_published: boolean;
     published_on: string;
 }
+
+export interface IBlogInputData {
+    title: string;
+    content: string;
+    tags: string;
+    summary: string;
+    is_published: string;
+}

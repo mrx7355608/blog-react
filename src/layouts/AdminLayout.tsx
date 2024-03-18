@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { AdminSidebar } from "../components/admin/AdminSidebar";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "../components/main/Spinner";
 import InternalServerError from "../components/main/InternalServerError";
+import ToastProvider from "../context/toast";
 
 export const AdminLayout = () => {
     const navTo = useNavigate();
@@ -41,10 +42,14 @@ export const AdminLayout = () => {
 
     return (
         <div className="flex items-start justify-center w-full">
-            <AdminSidebar />
-            <div className="w-3/4 p-4">
-                <Outlet />
-            </div>
+            <ToastProvider>
+                <AdminSidebar />
+                <div className="w-3/4 p-4">
+                    <Suspense fallback={<Spinner />}>
+                        <Outlet />
+                    </Suspense>
+                </div>
+            </ToastProvider>
         </div>
     );
 };

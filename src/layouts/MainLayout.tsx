@@ -1,11 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/main/Navbar";
+import { Suspense } from "react";
+import { Spinner } from "../components/main/Spinner";
 
 export const MainLayout = () => {
     return (
         <>
             <Navbar />
-            <Outlet />
+            <Suspense fallback={<Spinner />}>
+                <Outlet />
+            </Suspense>
         </>
     );
 };

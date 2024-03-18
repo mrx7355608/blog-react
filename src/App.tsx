@@ -1,16 +1,19 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { lazy } from "react";
+
+// Layouts
 import { MainLayout } from "./layouts/MainLayout";
 import { AdminLayout } from "./layouts/AdminLayout";
-import { Home } from "./pages/blogs/Home";
-import { SingleBlog } from "./pages/blogs";
-import {
-    CreateBlog,
-    Dashboard,
-    DraftBlogs,
-    PublishedBlogs,
-    Login,
-} from "./pages/admin";
-import { EditBlog } from "./pages/admin/EditBlog";
+
+// Pages
+const Home = lazy(() => import("./pages/blogs/Home"));
+const SingleBlog = lazy(() => import("./pages/blogs/SingleBlog"));
+const CreateBlog = lazy(() => import("./pages/admin/CreateBlog"));
+const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
+const DraftBlogs = lazy(() => import("./pages/admin/DraftBlogs"));
+const Login = lazy(() => import("./pages/admin/Login"));
+const PublishedBlogs = lazy(() => import("./pages/admin/PublishedBlogs"));
+// const EditBlog = lazy(() => import("./pages/admin/EditBlog"));
 
 const router = createBrowserRouter([
     {
@@ -47,10 +50,10 @@ const router = createBrowserRouter([
                 path: "create-blog",
                 element: <CreateBlog />,
             },
-            {
-                path: "edit/:id",
-                element: <EditBlog />,
-            },
+            // {
+            //     path: "edit/:id",
+            //     element: <EditBlog />,
+            // },
         ],
     },
     {

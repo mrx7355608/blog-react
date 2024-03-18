@@ -19,16 +19,22 @@ export default function Navbar() {
             </Link>
             <MobMenu />
             <div className="hidden lg:flex items-center gap-6 text-white mr-4">
-                <Link to="" target="_blank">
+                <Link to="https://www.facebook.com/fdas23/" target="_blank">
                     <FaFacebook size={20} />
                 </Link>
-                <Link to="" target="_blank">
+                <Link
+                    to="https://www.instagram.com/fawadimran/"
+                    target="_blank"
+                >
                     <FaInstagram size={20} />
                 </Link>
                 <Link to="" target="_blank">
                     <FaTwitter size={20} />
                 </Link>
-                <Link to="" target="_blank">
+                <Link
+                    to="https://www.linkedin.com/in/fawad-imran-22b0542b3/"
+                    target="_blank"
+                >
                     <FaLinkedin size={20} />
                 </Link>
                 <Searchbar />

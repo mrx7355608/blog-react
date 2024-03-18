@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useAuthFetch from "../../hooks/useAuthFetch";
 import { IBlog } from "../../types/blog";
-import { Spinner } from "../../components/main/Spinner";
+import { MainPagesSpinner } from "../../components/main/MainPagesSpinner";
 import ReactHtmlParser from "react-html-parser";
 import { useEffect } from "react";
 import Prism from "prismjs";
@@ -20,7 +20,7 @@ export default function SingleBlog() {
 
     return (
         <div className="bg-black min-h-screen flex justify-center w-full py-12">
-            {loading && <Spinner />}
+            {loading && <MainPagesSpinner />}
             {error && <ErrorBox error={error} />}
             {response ? <Blog blog={response.data} /> : null}
         </div>

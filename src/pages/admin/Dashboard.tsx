@@ -1,4 +1,4 @@
-import { Spinner } from "../../components/main/Spinner";
+import Spinner from "../../components/main/Spinner";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InfiniteScroll from "../../components/blog/InfiniteScroll";

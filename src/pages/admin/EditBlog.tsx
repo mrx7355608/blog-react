@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useAuthFetch from "../../hooks/useAuthFetch";
 import { IBlog } from "../../types/blog";
-import { Spinner } from "../../components/main/Spinner";
+import { MainPagesSpinner } from "../../components/main/MainPagesSpinner";
 import ErrorBox from "../../components/blog/ErrorBox";
 
 export default function EditBlog() {
@@ -15,7 +14,7 @@ export default function EditBlog() {
     const { loading, error, response } = useAuthFetch<IBlog>(url);
 
     if (loading) {
-        return <Spinner />;
+        return <MainPagesSpinner />;
     }
 
     if (error) {
@@ -90,7 +89,7 @@ export default function EditBlog() {
 
             {/* Create blog button */}
             <button onClick={createBlog} className="mt-8 btn btn-info w-full">
-                {loading ? <Spinner /> : "Create blog"}
+                {loading ? <MainPagesSpinner /> : "Create blog"}
             </button>
         </div>
     );

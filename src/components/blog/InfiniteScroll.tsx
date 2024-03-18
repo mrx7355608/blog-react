@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useAuthFetch from "../../hooks/useAuthFetch";
 import * as blog from "../../types/blog";
-import { Spinner } from "../main/Spinner";
+import { MainPagesSpinner } from "../main/MainPagesSpinner";
 import InfiniteScrollComponent from "react-infinite-scroll-component";
 
 interface IInfiniteScrollProps {
@@ -35,13 +35,13 @@ export default function InfiniteScroll({
 
     return (
         <div className="w-full">
-            {loading && <Spinner />}
+            {loading && <MainPagesSpinner />}
             {response && (
                 <InfiniteScrollComponent
                     dataLength={response?.data.length as number}
                     hasMore={hasMore}
                     next={() => setPage(page + 1)}
-                    loader={<Spinner />}
+                    loader={<MainPagesSpinner />}
                     endMessage={<h3></h3>}
                 >
                     {blogs.map((blog: blog.IBlog) => {

@@ -1,6 +1,6 @@
 import { Editor } from "@tinymce/tinymce-react";
 import { useRef, useState } from "react";
-import { Spinner } from "../../components/main/Spinner";
+import { MainPagesSpinner } from "../../components/main/MainPagesSpinner";
 import { SuccessAlert } from "../../components/admin/SuccessAlert";
 import { IBlogInputData } from "../../types/blog";
 import { createBlog, createBlogDataObject } from "../../services/blog.services";
@@ -90,7 +90,7 @@ export default function CreateBlog() {
 
             {/* Create blog button */}
             <button onClick={create} className="mt-8 btn btn-info w-full">
-                {loading ? <Spinner /> : "Create blog"}
+                {loading ? <MainPagesSpinner /> : "Create blog"}
             </button>
         </div>
     );

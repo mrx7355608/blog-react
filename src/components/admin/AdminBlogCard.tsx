@@ -8,13 +8,15 @@ import {
     publishBlog,
     unPublishBlog,
 } from "../../services/blog.services";
+import DeleteBlogBtn from "./DeleteBlogBtn";
+import PublishButton from "./PublishButton";
+import UnpublishButton from "./UnpublishButton";
 
 type ServiceFunc = (blogID: string) => Promise<string | null>;
 
 export default function AdminBlogCard({ blog }: { blog: IBlog }) {
     const navTo = useNavigate();
     const { showErrorToast, showSuccessToast } = useToast();
-    const [isDoubleCheck, setDoubleCheck] = useState(false);
     const [loading, setLoading] = useState({
         isDeleting: false,
         isPublishing: false,
@@ -39,66 +41,50 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
 
     return (
         <div className="flex flex-col p-3 my-4 w-full">
+            {/* Title */}
             <Link to={`/${blog.slug}`}>
                 <h1 className="text-3xl font-bold inline text-gray-100 hover:underline">
                     {blog.title}
                 </h1>
             </Link>
+
+            {/* Publishing date */}
             <i className="text-gray-500 font-medium mt-2">
                 {blog.published_on}
             </i>
 
+            {/* Tags */}
             <div className="flex flex-wrap gap-1 mt-2">
                 {blog.tags.map((tag, index) => (
                     <Tag tag={tag} key={index} />
                 ))}
             </div>
 
+            {/* Summary */}
             <p className="text-gray-400 mt-4 mb-12 leading-6 font-normal">
                 {blog.summary}
             </p>
 
+            {/* Action buttons */}
             <div className="flex flex-wrap gap-2 items-center w-full p-3">
-                <button
-                    className="btn btn-ghost bg-zinc-900 flex-1"
-                    onClick={publish}
-                >
-                    {loading.isPublishing ? <Spinner /> : "Publish"}
-                </button>
-                <button
-                    className="btn btn-ghost bg-zinc-900 flex-1"
-                    onClick={unPublish}
-                >
-                    {loading.isUnpublishing ? <Spinner /> : "Un-publish"}
-                </button>
+                <PublishButton
+                    publish={publish}
+                    isLoading={loading.isPublishing}
+                />
+                <UnpublishButton
+                    unPublish={unPublish}
+                    isLoading={loading.isUnpublishing}
+                />
                 <button
                     className="btn btn-ghost bg-zinc-900 flex-1"
                     onClick={() => navTo(`/admin/edit/${blog._id}`)}
                 >
                     Edit
                 </button>
-                {!isDoubleCheck ? (
-                    <button
-                        className="btn btn-error flex-1"
-                        onClick={() => {
-                            setDoubleCheck(true);
-                            setTimeout(() => setDoubleCheck(false), 10000);
-                        }}
-                    >
-                        Delete
-                    </button>
-                ) : (
-                    <button
-                        className="btn btn-error flex-1"
-                        onClick={removeBlog}
-                    >
-                        {loading.isDeleting ? (
-                            <Spinner />
-                        ) : (
-                            "Click again to delete"
-                        )}
-                    </button>
-                )}
+                <DeleteBlogBtn
+                    removeBlog={removeBlog}
+                    isLoading={loading.isDeleting}
+                />
             </div>
             <hr className="border-gray-800" />
         </div>
@@ -134,8 +120,4 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
             }
         };
     }
-}
-
-function Spinner() {
-    return <span className="loading loading-md"></span>;
 }

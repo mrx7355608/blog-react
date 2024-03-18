@@ -1,4 +1,4 @@
-import { BlogCard } from "../../components/blog/BlogCard";
+import AdminBlogCard from "../../components/admin/AdminBlogCard";
 import InfiniteScroll from "../../components/blog/InfiniteScroll";
 
 export default function DraftBlogs() {
@@ -6,7 +6,7 @@ export default function DraftBlogs() {
         <div className="flex items-start w-full flex-col gap-3 p-6">
             <InfiniteScroll
                 endpoint="/api/blogs/un-published"
-                Card={BlogCard}
+                Card={AdminBlogCard}
             />
         </div>
     );

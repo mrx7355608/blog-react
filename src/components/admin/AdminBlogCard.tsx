@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IBlog } from "../../types/blog";
-import Tag from "../blog/Tag";
 import { useToast } from "../../context/toast";
 import { useState } from "react";
 import {
@@ -11,6 +10,7 @@ import {
 import DeleteBlogBtn from "./DeleteBlogBtn";
 import PublishButton from "./PublishButton";
 import UnpublishButton from "./UnpublishButton";
+import TagsList from "../blog/TagsList";
 
 type ServiceFunc = (blogID: string) => Promise<string | null>;
 
@@ -54,11 +54,7 @@ export default function AdminBlogCard({ blog }: { blog: IBlog }) {
             </i>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-1 mt-2">
-                {blog.tags.map((tag, index) => (
-                    <Tag tag={tag} key={index} />
-                ))}
-            </div>
+            <TagsList tags={blog.tags} />
 
             {/* Summary */}
             <p className="text-gray-400 mt-4 mb-12 leading-6 font-normal">

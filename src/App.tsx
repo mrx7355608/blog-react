@@ -4,6 +4,7 @@ import { lazy } from "react";
 // Layouts
 import { AdminLayout } from "./layouts/AdminLayout";
 import InternalServerError from "./components/main/InternalServerError";
+import { getAdmin } from "./services/admin.services";
 
 // Pages
 const CreateBlog = lazy(() => import("./pages/CreateBlog"));
@@ -17,6 +18,13 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <AdminLayout />,
+        loader: async () => {
+            const result = await getAdmin();
+            if (!result.ok && result.error) {
+                throw new Response(result.error, { status: 401 });
+            }
+            return result.data;
+        },
         errorElement: <InternalServerError />,
         children: [
             {

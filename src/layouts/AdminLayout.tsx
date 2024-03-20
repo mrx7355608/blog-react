@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Outlet, useNavigation } from "react-router-dom";
 import { AdminSidebar } from "../components/admin/AdminSidebar";
-import { useEffect, useState, Suspense } from "react";
-import { useNavigate } from "react-router-dom";
+import { Suspense } from "react";
 import { MainPagesSpinner } from "../components/main/MainPagesSpinner";
-import InternalServerError from "../components/main/InternalServerError";
 import ToastProvider from "../context/toast";
-import { getAdmin } from "../services/admin.services";
 
 export const AdminLayout = () => {
     const navigation = useNavigation();

@@ -1,5 +1,5 @@
 import AdminBlogCard from "../components/admin/AdminBlogCard";
-import InfiniteScroll from "../components/blog/InfiniteScroll";
+import InfiniteScroll from "../components/main/InfiniteScroll";
 
 export default function PublishedBlogs() {
     return (

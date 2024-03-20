@@ -1,7 +1,7 @@
 import Spinner from "../components/main/Spinner";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InfiniteScroll from "../components/blog/InfiniteScroll";
+import InfiniteScroll from "../components/main/InfiniteScroll";
 import AdminBlogCard from "../components/admin/AdminBlogCard";
 import { logoutAdmin } from "../services/admin.services";
 

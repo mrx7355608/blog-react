@@ -10,7 +10,7 @@ import {
 import DeleteBlogBtn from "./DeleteBlogBtn";
 import PublishButton from "./PublishButton";
 import UnpublishButton from "./UnpublishButton";
-import TagsList from "../blog/TagsList";
+import TagsList from "./TagsList";
 
 type ServiceFunc = (blogID: string) => Promise<string | null>;
 

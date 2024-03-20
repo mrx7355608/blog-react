@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginAdmin } from "../../services/admin.services";
+import { loginAdmin } from "../services/admin.services";
 
 export default function Login() {
     const navigateTo = useNavigate();
@@ -68,7 +68,7 @@ export default function Login() {
             if (result.error) {
                 return setError(result.error);
             }
-            navigateTo("/admin/dashboard");
+            navigateTo("/");
         } catch (err) {
             setError((err as Error).message);
         } finally {

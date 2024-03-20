@@ -4,19 +4,19 @@ export const AdminSidebar = () => {
     const links = [
         {
             title: "Home",
-            url: "/admin/dashboard",
+            url: "/",
         },
         {
             title: "Published blogs",
-            url: "/admin/published",
+            url: "/published",
         },
         {
             title: "Draft Blogs",
-            url: "/admin/drafts",
+            url: "/drafts",
         },
         {
             title: "Create",
-            url: "/admin/create-blog",
+            url: "/create-blog",
         },
     ];
 

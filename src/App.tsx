@@ -2,40 +2,25 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
 
 // Layouts
-import { MainLayout } from "./layouts/MainLayout";
 import { AdminLayout } from "./layouts/AdminLayout";
+import InternalServerError from "./components/main/InternalServerError";
 
 // Pages
-const Home = lazy(() => import("./pages/blogs/Home"));
-const SingleBlog = lazy(() => import("./pages/blogs/SingleBlog"));
-const CreateBlog = lazy(() => import("./pages/admin/CreateBlog"));
-const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
-const DraftBlogs = lazy(() => import("./pages/admin/DraftBlogs"));
-const Login = lazy(() => import("./pages/admin/Login"));
-const PublishedBlogs = lazy(() => import("./pages/admin/PublishedBlogs"));
-const EditBlog = lazy(() => import("./pages/admin/EditBlog"));
+const CreateBlog = lazy(() => import("./pages/CreateBlog"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const DraftBlogs = lazy(() => import("./pages/DraftBlogs"));
+const Login = lazy(() => import("./pages/Login"));
+const PublishedBlogs = lazy(() => import("./pages/PublishedBlogs"));
+const EditBlog = lazy(() => import("./pages/EditBlog"));
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayout />,
+        element: <AdminLayout />,
+        errorElement: <InternalServerError />,
         children: [
             {
                 index: true,
-                element: <Home />,
-            },
-            {
-                path: ":slug",
-                element: <SingleBlog />,
-            },
-        ],
-    },
-    {
-        path: "/admin",
-        element: <AdminLayout />,
-        children: [
-            {
-                path: "dashboard",
                 element: <Dashboard />,
             },
             {
@@ -57,7 +42,7 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: "/admin/login",
+        path: "login",
         element: <Login />,
     },
 ]);

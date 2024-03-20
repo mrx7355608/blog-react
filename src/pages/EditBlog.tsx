@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import useAuthFetch from "../../hooks/useAuthFetch";
-import { IBlog, IBlogInputData } from "../../types/blog";
-import { MainPagesSpinner } from "../../components/main/MainPagesSpinner";
-import ErrorBox from "../../components/blog/ErrorBox";
+import useAuthFetch from "../hooks/useAuthFetch";
+import { IBlog, IBlogInputData } from "../types/blog";
+import { MainPagesSpinner } from "../components/main/MainPagesSpinner";
+import ErrorBox from "../components/blog/ErrorBox";
 import { Editor } from "@tinymce/tinymce-react";
-import Spinner from "../../components/main/Spinner";
-import { editBlog } from "../../services/blog.services";
-import { useToast } from "../../context/toast";
+import Spinner from "../components/main/Spinner";
+import { editBlog } from "../services/blog.services";
+import { useToast } from "../context/toast";
 
 export default function EditBlog() {
     const { showSuccessToast, showErrorToast } = useToast();

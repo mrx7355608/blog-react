@@ -1,9 +1,9 @@
-import Spinner from "../../components/main/Spinner";
+import Spinner from "../components/main/Spinner";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InfiniteScroll from "../../components/blog/InfiniteScroll";
-import AdminBlogCard from "../../components/admin/AdminBlogCard";
-import { logoutAdmin } from "../../services/admin.services";
+import InfiniteScroll from "../components/blog/InfiniteScroll";
+import AdminBlogCard from "../components/admin/AdminBlogCard";
+import { logoutAdmin } from "../services/admin.services";
 
 export default function Dashboard() {
     const [logoutLoading, setLogoutLoading] = useState(false);
@@ -29,7 +29,7 @@ export default function Dashboard() {
             if (result.error) {
                 return alert(result.error);
             }
-            navTo("/admin/login");
+            navTo("/login");
         } catch (err) {
             alert((err as Error).message);
         } finally {

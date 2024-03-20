@@ -1,9 +1,9 @@
 import { Editor } from "@tinymce/tinymce-react";
 import { useRef, useState } from "react";
-import { MainPagesSpinner } from "../../components/main/MainPagesSpinner";
-import { SuccessAlert } from "../../components/admin/SuccessAlert";
-import { IBlogInputData } from "../../types/blog";
-import { createBlog, createBlogDataObject } from "../../services/blog.services";
+import { MainPagesSpinner } from "../components/main/MainPagesSpinner";
+import { SuccessAlert } from "../components/admin/SuccessAlert";
+import { IBlogInputData } from "../types/blog";
+import { createBlog, createBlogDataObject } from "../services/blog.services";
 
 export default function CreateBlog() {
     const editorRef = useRef<Editor | null>(null);

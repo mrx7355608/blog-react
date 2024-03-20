@@ -13,35 +13,9 @@ export const AdminLayout = () => {
     const [loading, setLoading] = useState(true);
     const [showInternalError, setShowInternalError] = useState(false);
 
-    useEffect(() => {
-        const isAdminLoggedIn = async () => {
-            // getAdmin() will return admin data if he is logged in (result.ok == true)
-            // otherwise result.ok will be false
-            const result = await getAdmin();
-
-            setLoading(false);
-            if (!result.ok) {
-                return navTo("/");
-            }
-        };
-
-        isAdminLoggedIn();
-    }, [navTo]);
-
-    if (loading) {
-        return (
-            <div className="w-full h-screen flex items-center justify-center">
-                <MainPagesSpinner />
-            </div>
-        );
-    }
-
-    if (showInternalError) {
-        return <InternalServerError />;
-    }
-
     return (
         <div className="flex items-start justify-center w-full">
+            {navi}
             <ToastProvider>
                 <AdminSidebar />
                 <div className="w-3/4 p-4">
